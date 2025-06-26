@@ -1,0 +1,18 @@
+├── login                      (login page with token input)
+├── dashboard                  (home page after login)
+│   ├── worlds                (list of worlds / create new)
+│   │   ├── worlds/new       (form to create a world)
+│   │   └── worlds/:id       (world details, with campaigns list)
+│   │
+│   ├── campaigns            (list of campaigns for a world)
+│   │   ├── campaigns/new    (form to create a campaign)
+│   │   └── campaigns/:id    (campaign details: characters, sessions)
+│   │
+│   ├── characters          (list of characters in a campaign)
+│   │   ├── characters/new-pc (form to create Player Character)
+│   │   ├── characters/new-npc (form to create NPC)
+│   │   └── characters/:id  (character details)
+│   │
+│   └── sessions            (list of sessions in a campaign)
+│       ├── sessions/new    (form to create session)
+│       └── sessions/:id    (session details)

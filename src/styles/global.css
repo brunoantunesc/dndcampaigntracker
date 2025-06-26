@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background-color: #111;
+  color: #eee;
+  background-image:
+    linear-gradient(to right, #222 1px, transparent 1px),
+    linear-gradient(to bottom, #222 1px, transparent 1px);
+  background-size: 20px 20px;
+  line-height: 1.5;
+}
+
+button {
+  font-family: 'Press Start 2P', monospace;
+  background-color: #61dafb;
+  border: 3px solid #21a1f1;
+  color: #222;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  outline: none;
+  box-shadow: none;
+}
+
+button:hover {
+  background-color: #21a1f1;
+  border-color: #61dafb;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-family: 'Press Start 2P', monospace;
+  background-color: #111;
+  border: 3px solid #61dafb;
+  color: #eee;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #21a1f1;
+}
+
+.container {
+  max-width: 480px;
+  margin: 3rem auto;
+  padding: 1rem;
+  background-color: #111;
+  border: 3px solid #61dafb;
+  box-sizing: border-box;
+}
