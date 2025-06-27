@@ -46,6 +46,20 @@ app.post('/login', async (req, res) => {
   }
 });
 
+const worldRoutes = require('./routes/worldRoutes');
+const calendarRoutes = require('./routes/calendarRoutes');
+const monthRoutes = require('./routes/monthRoutes');
+const sessionRoutes = require('./routes/sessionRoutes');
+const campaignRoutes = require('./routes/campaignRoutes');
+const characterRoutes = require('./routes/characterRoutes');
+
+app.use('/campaigns', campaignRoutes);
+app.use('/characters', characterRoutes);
+app.use('/sessions', sessionRoutes);
+app.use('/api/worlds', worldRoutes);
+app.use('/api/calendars', calendarRoutes);
+app.use('/api/months', monthRoutes);
+
 // Rota de rotas (menu)
 app.get('/routes', authenticateToken, (req, res) => {
   res.json([
