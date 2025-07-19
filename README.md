@@ -1,70 +1,104 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🧙‍♂️ WorldBuilder: RPG Campaign Tracker
 
-## Available Scripts
+WorldBuilder is a lightweight RPG campaign management platform designed for game masters. It allows you to create fantasy worlds with custom calendars, build rich timelines of sessions, manage characters, and track the progress of your campaigns — all with a nostalgic 8-bit look.
 
-In the project directory, you can run:
+## 🎮 Features
 
-### `npm start`
+- ✨ Create custom worlds with their own calendar systems  
+- 📅 Define months and track in-world time progression  
+- 🎭 Manage characters (PCs and NPCs) with class, race, and birthdate  
+- 📚 Organize campaigns and sessions with story hooks and rich narrative tracking  
+- 🔐 Secure login with JWT authentication  
+- 🖼️ 8-bit pixel-art inspired user interface  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📦 Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React, React Router, TailwindCSS  
+- **Backend**: Node.js, Express.js  
+- **Database**: MongoDB (hosted on Atlas)  
+- **Authentication**: JWT with token expiration  
+- **Design**: Retro-style UI with pixel art elements  
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🔧 Requirements
 
-### `npm run build`
+- Node.js v18+  
+- npm or yarn  
+- MongoDB Atlas account (or local MongoDB)  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📥 Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/your-username/worldbuilder.git
+   cd worldbuilder
+   ```
 
-### `npm run eject`
+2. Install backend dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   cd server
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Create a `.env` file in the `server/` directory:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Start the backend server:
 
-## Learn More
+   ```bash
+   npm run dev
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. In a new terminal tab, install frontend dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   cd ../client
+   npm install
+   npm run dev
+   ```
 
-### Code Splitting
+6. Visit the app at: [http://localhost:5173](http://localhost:5173)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🗃️ Project Structure
 
-### Analyzing the Bundle Size
+```
+worldbuilder/
+├── client/          # React frontend
+│   ├── components/  # UI components
+│   └── pages/       # Application pages
+├── server/          # Express backend
+│   ├── models/      # Mongoose models (World, Calendar, Session, etc)
+│   ├── controllers/ # Logic for each model
+│   ├── routes/      # API routes
+│   └── middleware/  # Auth and validation
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🛡️ Authentication
 
-### Making a Progressive Web App
+Authentication is handled using **JWT tokens** with a 30-minute expiration.  
+The frontend uses a custom `authFetch` wrapper to include the token in all protected requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📚 Planned Features
 
-### Advanced Configuration
+- 🧭 Session timeline with rich narrative display  
+- 🧑‍🤝‍🧑 Player/GM roles (GM-only controls)  
+- 🖼️ Portrait uploads for characters  
+- 📦 Export data as PDF or JSON  
+- 🌙 Dark mode  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🤝 Contributing
 
-### Deployment
+PRs are welcome! If you'd like to improve the app, fix a bug, or add new features, feel free to fork the repo and open a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📜 License
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License. Feel free to use or modify this project for personal and professional use.
