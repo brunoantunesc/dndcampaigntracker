@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { colors, fonts, spacing, borders } from '../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
+import CommonButton from './Buttons'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,9 +35,14 @@ const Header = () => {
           <Menu color={colors.primary} size={28} />
         </div>
         <div style={logoStyle}>DnD Tracker</div>
-        <button style={buttonStyle} onClick={handleLogout} aria-label="Logout">
+        <CommonButton
+          onClick={handleLogout}
+          variant="secondary"
+          className="p-2"
+          aria-label="Logout"
+        >
           <LogOut color={colors.primary} size={24} />
-        </button>
+        </CommonButton>
       </header>
       
       <div
@@ -74,18 +80,6 @@ const hamburgerContainerStyle = {
 
 const logoStyle = {
   fontSize: '1rem',
-};
-
-const buttonStyle = {
-  fontFamily: fonts.main,
-  backgroundColor: colors.background,
-  border: `1px solid ${colors.primaryDark}`,
-  color: colors.background,
-  padding: `${spacing.sm} ${spacing.md}`,
-  cursor: 'pointer',
-  outline: 'none',
-  boxShadow: 'none',
-  transition: 'background-color 0.2s',
 };
 
 export default Header;
