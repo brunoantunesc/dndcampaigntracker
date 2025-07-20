@@ -41,7 +41,7 @@ const Header = () => {
           className="p-2"
           aria-label="Logout"
         >
-          <LogOut color={colors.primary} size={24} />
+          <LogOut color={colors.secondary} size={24} />
         </CommonButton>
       </header>
       
