@@ -1,4 +1,6 @@
 // backend/models/World.js
+const mongoose = require('mongoose');
+
 const worldSchema = new mongoose.Schema({
   name: {
     type: String,
