@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CommonButton from './Buttons'
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -59,9 +60,9 @@ export default function Login() {
 
         <br />
 
-        <button type="submit" style={{ padding: '10px 20px' }}>
+        <CommonButton type="submit" className="mt-4">
           Entrar
-        </button>
+        </CommonButton>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>

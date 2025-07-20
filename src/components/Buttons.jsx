@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Button = ({ children, onClick, type = 'button', variant = 'primary', className = '', disabled = false }) => {
+const CommonButton = ({ children, onClick, type = 'button', variant = 'primary', className = '', disabled = false }) => {
   const baseClasses = 'px-4 py-2 rounded font-semibold focus:outline-none transition-colors';
 
   const variantClasses = {
