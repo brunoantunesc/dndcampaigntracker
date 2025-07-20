@@ -25,7 +25,7 @@ const CommonButton = ({ children, onClick, type = 'button', variant = 'primary',
   );
 };
 
-Button.propTypes = {
+CommonButton.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -34,4 +34,4 @@ Button.propTypes = {
   disabled: PropTypes.bool,
 };
 
-export default Button;
+export default CommonButton;
