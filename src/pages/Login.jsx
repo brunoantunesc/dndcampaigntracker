@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CommonButton from './Buttons'
+import CommonButton from '../components/Buttons'
 
 export default function Login() {
   const [email, setEmail] = useState('');

@@ -1,4 +1,6 @@
 // backend/models/Month.js
+const mongoose = require('mongoose');
+
 const monthSchema = new mongoose.Schema({
   name: {
     type: String,
