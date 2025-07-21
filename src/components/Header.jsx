@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { colors, fonts, spacing, borders } from '../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
-import CommonButton from './Buttons'
+import CommonButton from './Buttons.tsx'
 
 const Header = () => {
   const navigate = useNavigate();

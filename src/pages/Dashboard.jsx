@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { authFetch } from '../utils/authFetch';
 import WorldCard from '../components/WorldCard';
-import CommonButton from '../components/Buttons';
+import CommonButton from '../components/Buttons.tsx';
 
 const Home = () => {
   const [worlds, setWorlds] = useState([]);

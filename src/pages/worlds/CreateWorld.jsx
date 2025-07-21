@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import InputField from '../../components/form/InputField';
-import CommonButton from '../../components/Buttons';
+import InputField from '../../components/form/InputField.tsx';
+import CommonButton from '../../components/Buttons.tsx';
 import { authFetch } from '../../utils/authFetch';
-import FormWrapper from '../../components/form/FormWrapper';
+import FormWrapper from '../../components/form/FormWrapper.tsx';
 
 const CreateWorld = () => {
   const [form, setForm] = useState({
