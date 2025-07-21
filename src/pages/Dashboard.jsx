@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { authFetch } from '../utils/authFetch';
 import WorldCard from '../components/WorldCard';
 import CommonButton from '../components/Buttons.tsx';
+import { spacing } from '../styles/designSystem.js';
 
 const Home = () => {
   const [worlds, setWorlds] = useState([]);
@@ -38,7 +39,7 @@ const Home = () => {
     <>
     <Header />
 
-    <div style={{paddingLeft: '20px', paddingTop: '20px'}} className="p-6 max-w-screen-lg mx-auto">
+    <div style={{paddingLeft: spacing.lg, paddingTop: spacing.lg}} className="p-6 max-w-screen-lg mx-auto">
       <h1 className="text-2xl font-bold mb-4">Your Worlds</h1>
       {worlds.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -51,7 +52,7 @@ const Home = () => {
           <p className="mb-4 text-gray-700 text-lg text-center max-w-md">
             You haven’t created any worlds yet.
           </p>
-          <div style={{paddingTop: '20px'}}>
+          <div style={{paddingTop: spacing.lg}}>
             <CommonButton onClick={() => navigate('/worlds/create')}>
               Create Your First World
             </CommonButton>

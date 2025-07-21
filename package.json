@@ -1,11 +1,12 @@
 {
   "name": "dndcampaigntracker",
   "version": "0.1.0",
+  "proxy": "http://localhost:4000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.1.2",
+    "@mui/material": "^7.2.0",
     "@tailwindcss/vite": "^4.1.11",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

@@ -6,6 +6,7 @@ import InputField from '../../components/form/InputField.tsx';
 import CommonButton from '../../components/Buttons.tsx';
 import { authFetch } from '../../utils/authFetch';
 import FormWrapper from '../../components/form/FormWrapper.tsx';
+import { spacing } from '../../styles/designSystem.js';
 
 const CreateWorld = () => {
   const [form, setForm] = useState({
@@ -44,7 +45,7 @@ const CreateWorld = () => {
   return (
     <>
     <Header />
-    <div style={{paddingTop: '20px', paddingLeft: '20px'}} >
+    <div style={{paddingTop: spacing.lg, paddingLeft: spacing.lg}} >
       <FormWrapper title="Create New World" onSubmit={handleSubmit}>
         <InputField
           label="World Name"
@@ -53,6 +54,7 @@ const CreateWorld = () => {
           onChange={handleChange}
           placeholder="Enter a name for your world"
         />
+
         <InputField
           label="Description"
           name="description"
@@ -60,7 +62,10 @@ const CreateWorld = () => {
           onChange={handleChange}
           placeholder="Optional description"
         />
-        <CommonButton type="submit">Create World</CommonButton>
+        
+        <div style={{paddingTop: spacing.lg}}>
+          <CommonButton type="submit">Create World</CommonButton>
+        </div>
       </FormWrapper>
     </div>
   </>
