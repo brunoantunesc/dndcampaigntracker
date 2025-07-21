@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CommonButton from '../components/Buttons.tsx'
+import {CommonButton} from '../components/Buttons.tsx'
+import { fetchRoutes } from '../services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ export default function Login() {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('userName', data.name);
+      await fetchRoutes()
       navigate('/');
     } catch (err) {
       setError('Erro ao conectar com o servidor');

@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { authFetch } from '../../utils/authFetch';
 import WorldCard from '../../components/WorldCard';
-import CommonButton from '../../components/Buttons.tsx';
+import {CommonButton} from '../../components/Buttons.tsx';
 import { spacing } from '../../styles/designSystem.js';
 
 const Home = () => {

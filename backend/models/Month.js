@@ -10,11 +10,6 @@ const monthSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  calendar: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Calendar',
-    required: true,
-  },
 });
 
 module.exports = mongoose.model('Month', monthSchema);

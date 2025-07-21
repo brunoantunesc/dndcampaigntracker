@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import InputField from '../../components/form/InputField.tsx';
-import CommonButton from '../../components/Buttons.tsx';
+import {CommonButton} from '../../components/Buttons.tsx';
 import { authFetch } from '../../utils/authFetch';
 import FormWrapper from '../../components/form/FormWrapper.tsx';
 import { spacing } from '../../styles/designSystem.js';

@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import {jwtDecode} from 'jwt-decode';
 import CreateWorld from './pages/worlds/CreateWorld';
+import CreateCalendar from './pages/calendars/CreateCalendar.tsx';
 
 /*
 // import WorldsList from './pages/worlds/WorldsList';
@@ -40,6 +41,7 @@ const componentMap = {
   CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList')),
   CharacterList: React.lazy(() => import('./pages/characters/CharacterList')),
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
+  CalendarList: React.lazy(() => import('./pages/calendars/CalendarList.tsx')),
 };
 
 const useAuth = () => {
@@ -121,6 +123,15 @@ function App() {
           element={
           <React.Suspense fallback={<div>Loading...</div>}>
             <CreateWorld />
+          </React.Suspense>
+          }
+        />
+        
+        <Route
+          path="/calendars/create"
+          element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <CreateCalendar />
           </React.Suspense>
           }
         />

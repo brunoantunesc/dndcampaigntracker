@@ -64,6 +64,7 @@ app.use('/api/months', monthRoutes);
 app.get('/routes', authenticateToken, (req, res) => {
   res.json([
     { path: '/worlds', label: 'Worlds', component: 'WorldList' },
+    { path: '/calendars', label: 'Calendars', component: 'CalendarList' },
     { path: '/campaigns', label: 'Campaigns', component: 'CampaignList' },
     { path: '/characters', label: 'Characters', component: 'CharacterList' },
     { path: '/sessions', label: 'Sessions', component: 'SessionList' },
