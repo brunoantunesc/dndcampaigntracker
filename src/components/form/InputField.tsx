@@ -1,8 +1,24 @@
-// src/components/Form/InputField.jsx
+// src/components/Form/InputField.tsx
 import React from 'react';
 
-const InputField = ({ label, name, value, onChange, placeholder, type = 'text' }) => (
-  <div style={{maxWidth: '50%'}} className="mb-4">
+interface InputFieldProps {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  type?: string;
+}
+
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder,
+  type = 'text',
+}) => (
+  <div style={{ maxWidth: '50%' }} className="mb-4">
     <label className="block text-sm font-medium mb-1" htmlFor={name}>
       {label}
     </label>
