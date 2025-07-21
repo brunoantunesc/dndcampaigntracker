@@ -13,7 +13,7 @@ exports.createWorld = async (req, res) => {
 
 exports.getWorlds = async (req, res) => {
   try {
-    const worlds = await World.find({ owner: req.user.id }).populate('calendar');
+    const worlds = await World.find({ owner: req.user.id }).select('name description calendar').populate('calendar');
     res.json(worlds);
   } catch (error) {
     res.status(500).json({ message: 'Erro ao buscar mundos', error });

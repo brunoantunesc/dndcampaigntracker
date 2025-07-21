@@ -34,7 +34,7 @@ const Header = () => {
         >
           <Menu color={colors.primary} size={28} />
         </div>
-        <div style={logoStyle}>DnD Tracker</div>
+        <div style={logoStyle}>WorldBuilder</div>
         <CommonButton
           onClick={handleLogout}
           variant="secondary"
@@ -59,13 +59,12 @@ const headerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  backgroundColor: colors.background,
-  borderBottom: borders.thick,
-  padding: `${spacing.sm} ${spacing.lg}`,
-  fontFamily: fonts.main,
-  color: colors.primary,
+  backgroundColor: colors.dark,
+  padding: '1rem 2rem',
+  borderBottom: `2px solid ${colors.primary}`,
+  boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
   position: 'relative',
-  zIndex: 1100,
+  zIndex: 10,
 };
 
 const hamburgerContainerStyle = {
@@ -78,8 +77,13 @@ const hamburgerContainerStyle = {
   width: '60px',
 };
 
-const logoStyle = {
-  fontSize: '1rem',
+const logoStyle = {  
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  fontSize: '1.5rem',
+  fontFamily: fonts.main,
+  color: colors.primary,
 };
 
 export default Header;
