@@ -72,14 +72,18 @@ WorldBuilder is a lightweight RPG campaign management platform designed for game
 
 ```
 worldbuilder/
-├── client/          # React frontend
+├── src/          # React frontend
 │   ├── components/  # UI components
 │   └── pages/       # Application pages
-├── server/          # Express backend
+│   └── services/    # API services
+│   └── styles/      # Global styles
+│   └── utils/       # Other util functions
+├── backend/      # Express backend
 │   ├── models/      # Mongoose models (World, Calendar, Session, etc)
 │   ├── controllers/ # Logic for each model
 │   ├── routes/      # API routes
 │   └── middleware/  # Auth and validation
+│   └── scripts/     # Util scripts
 ```
 
 ## 🛡️ Authentication
