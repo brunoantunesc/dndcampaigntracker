@@ -52,7 +52,7 @@ const Home = () => {
             You haven’t created any worlds yet.
           </p>
           <div style={{paddingTop: '20px'}}>
-            <CommonButton onClick={() => navigate('/worlds/new')}>
+            <CommonButton onClick={() => navigate('/worlds/create')}>
               Create Your First World
             </CommonButton>
           </div>
