@@ -13,6 +13,7 @@ import { fetchRoutes } from './services/api';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import {jwtDecode} from 'jwt-decode';
+import CreateWorld from './pages/worlds/CreateWorld';
 
 /*
 // import WorldsList from './pages/worlds/WorldsList';
@@ -32,6 +33,7 @@ import {jwtDecode} from 'jwt-decode';
 // import SessionForm from './pages/sessions/SessionForm';
 // import SessionDetails from './pages/sessions/SessionDetails';
 */
+const createWorld = React.lazy(() => import('./pages/worlds/CreateWorld'));
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -112,6 +114,16 @@ function App() {
             />
           );
         })}
+
+        {/* Rotas Estáticas */}
+        <Route
+          path="/worlds/create"
+          element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <CreateWorld />
+          </React.Suspense>
+          }
+        />
       </Routes>
     </>
   );
