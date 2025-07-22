@@ -1,5 +1,6 @@
 // src/components/Form/InputField.tsx
 import React from 'react';
+import { spacing } from '../../styles/designSystem';
 
 interface InputFieldProps {
   label: string;
@@ -18,7 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   type = 'text',
 }) => (
-  <div style={{ maxWidth: '50%' }} className="mb-4">
+  <div style={{ maxWidth: '50%', paddingTop: spacing.md }} className="mb-4">
     <label className="block text-sm font-medium mb-1" htmlFor={name}>
       {label}
     </label>

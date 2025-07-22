@@ -1,5 +1,6 @@
 // src/components/ui/Select.tsx
 import React from 'react';
+import { spacing } from '../../styles/designSystem';
 
 interface Option {
   value: string | number;
@@ -24,7 +25,7 @@ const Select: React.FC<SelectProps> = ({
   placeholder = 'Select an option',
 }) => {
   return (
-    <div className="mb-4">
+    <div style={{ maxWidth: '50%', paddingTop: spacing.md }} className="mb-4">
       <label htmlFor={name} className="block text-cyan-400 font-bold mb-1">
         {label}
       </label>
