@@ -50,13 +50,13 @@ const CreateCampaign: React.FC = () => {
     fetchWorlds();
   }, []);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const { name, value } = e.target;
+  setForm((prevForm) => ({
+    ...prevForm,
+    [name]: value,
+  }));
+};
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -90,18 +90,18 @@ const CreateCampaign: React.FC = () => {
   return (
     <>
       <Header />
-      <div style={{ paddingTop: spacing.lg, paddingLeft: spacing.lg }}>
+      <div className='text-center'>
         <FormWrapper title="Criar Nova Campanha" onSubmit={handleSubmit}>
           <InputField
-            label="Nome da Campanha"
+            label="Campaign Name"
             name="name"
             value={form.name}
             onChange={handleInputChange}
-            placeholder="Nome da campanha"
+            placeholder="Campaign Name"
           />
 
           <InputField
-            label="Data de Início"
+            label="Start Date"
             name="startDate"
             value={form.startDate}
             onChange={handleInputChange}
@@ -110,7 +110,7 @@ const CreateCampaign: React.FC = () => {
           />
 
           <InputField
-            label="Data de Fim (opcional)"
+            label="End Date (Optional)"
             name="endDate"
             value={form.endDate}
             onChange={handleInputChange}
@@ -119,7 +119,7 @@ const CreateCampaign: React.FC = () => {
           />
 
           <SelectField
-            label="Mundo"
+            label="World"
             name="world"
             value={form.world}
             onChange={handleSelectChange}
@@ -127,14 +127,14 @@ const CreateCampaign: React.FC = () => {
               value: world._id,
               label: world.name,
             }))}
-            placeholder="Selecione um mundo"
+            placeholder="Select a world"
           />
 
           <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
-            <CommonButton type="submit">Salvar</CommonButton>
+            <CommonButton type="submit">Save</CommonButton>
             <div>
               <CommonButton variant="secondary" onClick={() => navigate('/campaigns')}>
-                Cancelar
+                Cancel
               </CommonButton>
             </div>
           </div>

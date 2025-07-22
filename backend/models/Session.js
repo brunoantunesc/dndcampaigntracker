@@ -4,18 +4,17 @@ const mongoose = require('mongoose');
 const sessionSchema = new mongoose.Schema({
   title: {
     type: String,
+    required: true,
   },
   summary: {
     type: String,
-    required: true,
   },
-  startDate: {
+  date: {
     type: String,
     required: true,
   },
-  endDate: {
+  inGameDate: {
     type: String,
-    required: true,
   },
   campaign: {
     type: mongoose.Schema.Types.ObjectId,

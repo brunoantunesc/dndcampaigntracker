@@ -90,7 +90,7 @@ const EditCampaign: React.FC = () => {
     fetchData();
   }, [campaignId]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement| HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -166,9 +166,10 @@ const EditCampaign: React.FC = () => {
   return (
     <>
       <Header />
-      <FormWrapper title="Editar Campanha" onSubmit={handleSubmit}>
+      <div className="text-center">
+      <FormWrapper title="Edit Campaign" onSubmit={handleSubmit}>
         <InputField
-          label="Nome"
+          label="Name"
           name="name"
           value={form.name}
           onChange={handleChange}
@@ -176,7 +177,7 @@ const EditCampaign: React.FC = () => {
         />
 
         <InputField
-          label="Início"
+          label="Start"
           name="startDate"
           type="date"
           value={form.startDate}
@@ -185,7 +186,7 @@ const EditCampaign: React.FC = () => {
         />
 
         <InputField
-          label="Mundo"
+          label="World"
           name="worldName"
           value={worldName}
           onChange={() => {}}
@@ -193,14 +194,14 @@ const EditCampaign: React.FC = () => {
         />
 
         <InputField
-          label="Fim"
+          label="End"
           name="endDate"
           type="date"
           value={form.endDate ?? ''}
           onChange={handleChange}
         />
 
-        <label className="block mt-4 mb-1 text-sm">Arcos</label>
+        <label className="block mt-4 mb-1 text-sm">Arcs</label>
         <div className="flex gap-2 mb-4 flex-wrap">
           {arcs.map((arc) => (
             <div key={arc._id}>
@@ -214,7 +215,7 @@ const EditCampaign: React.FC = () => {
           ))}
         </div>
 
-        <label className="block mt-4 mb-1 text-sm">Personagens</label>
+        <label className="block mt-4 mb-1 text-sm">Characters</label>
         <div className="flex gap-2 mb-6 flex-wrap">
           {characters.map((char) => (
             <div key={char._id}>
@@ -237,6 +238,7 @@ const EditCampaign: React.FC = () => {
           </div>
         </div>
       </FormWrapper>
+      </div>
     </>
   );
 };

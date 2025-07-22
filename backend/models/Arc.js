@@ -1,4 +1,4 @@
-// backend/models/Campaign.js
+// backend/models/Arc.js
 const mongoose = require('mongoose');
 
 const arcSchema = new mongoose.Schema({
@@ -10,6 +10,10 @@ const arcSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Session',
   }],
+  campaign: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Campaign',
+  },
 });
 
-module.exports = mongoose.model('Campaign', campaignSchema);
+module.exports = mongoose.model('Arc', arcSchema);

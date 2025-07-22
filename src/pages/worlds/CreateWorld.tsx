@@ -48,7 +48,7 @@ const CreateWorld: React.FC = () => {
     fetchCalendars();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   const { name, value } = e.target;
   setForm((prevForm) => ({
     ...prevForm,
