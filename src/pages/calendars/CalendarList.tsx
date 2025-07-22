@@ -1,11 +1,11 @@
-// src/pages/calendars/CalendarsList.tsx
+// src/pages/calendars/CalendarsList
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import axios from 'axios';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
-import {CommonButton} from '../../components/Buttons.tsx';
+import FormWrapper from '../../components/form/FormWrapper';
+import {CommonButton} from '../../components/Buttons';
 import { spacing } from '../../styles/designSystem.js';
-import { Calendar } from '../../interfaces/Calendar.tsx';
+import { Calendar } from '../../interfaces/Calendar';
 
 const CalendarsList: React.FC = () => {
   const [calendars, setCalendars] = useState<Calendar[]>([]);

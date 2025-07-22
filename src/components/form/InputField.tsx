@@ -1,4 +1,4 @@
-// src/components/Form/InputField.tsx
+// src/components/Form/InputField
 import React from 'react';
 import { spacing } from '../../styles/designSystem';
 

@@ -1,14 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { colors, fonts, spacing, borders } from '../styles/designSystem';
 import { Link } from 'react-router-dom';
 
-const DrawerMenu = ({ isOpen, onClose }) => {
-  const [routes, setRoutes] = useState([]);
+interface Route {
+  path: string;
+  label: string;
+}
+
+interface DrawerMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpen, onClose }) => {
+  const [routes, setRoutes] = useState<Route[]>([]);
 
   useEffect(() => {
     const storedRoutes = localStorage.getItem('routes');
     if (storedRoutes) {
-      setRoutes(JSON.parse(storedRoutes));
+      try {
+        const parsedRoutes: Route[] = JSON.parse(storedRoutes);
+        setRoutes(parsedRoutes);
+      } catch {
+        // Caso JSON inválido, limpa as rotas
+        setRoutes([]);
+      }
     }
   }, []);
 
@@ -23,17 +39,17 @@ const DrawerMenu = ({ isOpen, onClose }) => {
       <nav style={{ ...drawerStyle, left: isOpen ? 0 : -250 }}>
         <ul style={listStyle}>
           {routes.map(({ path, label }) => (
-          <li key={path} >
-            <Link style={linkStyle} to={path}>{label}</Link>
-          </li>
-        ))}
+            <li key={path}>
+              <Link style={linkStyle} to={path}>{label}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </>
   );
 };
 
-const drawerStyle = {
+const drawerStyle: React.CSSProperties = {
   position: 'fixed',
   top: 0,
   bottom: 0,
@@ -47,7 +63,7 @@ const drawerStyle = {
   fontFamily: fonts.main,
 };
 
-const backdropStyle = {
+const backdropStyle: React.CSSProperties = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -57,7 +73,7 @@ const backdropStyle = {
   zIndex: 1000,
 };
 
-const logoStyle = {  
+const logoStyle: React.CSSProperties = {
   position: 'absolute',
   left: '50%',
   transform: 'translateX(-50%)',
@@ -66,17 +82,18 @@ const logoStyle = {
   color: colors.primary,
 };
 
-const listStyle = {
+const listStyle: React.CSSProperties = {
   listStyle: 'none',
   padding: 0,
   margin: 0,
 };
 
-const linkStyle = {
+const linkStyle: React.CSSProperties = {
   display: 'block',
-  padding: `${spacing.sm} ${spacing.md}`, // ex: 8px 16px
+  padding: `${spacing.sm} ${spacing.md}`,
   color: colors.primary,
   textDecoration: 'none',
   fontFamily: fonts.main,
 };
+
 export default DrawerMenu;

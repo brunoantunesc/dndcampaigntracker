@@ -4,6 +4,7 @@ export const colors = {
   background: '#111',
   foreground: '#eee',
   primary: '#61dafb',
+  secondary: '#333',
   primaryDark: '#21a1f1',
   danger: '#ff5555',
   border: '#333',

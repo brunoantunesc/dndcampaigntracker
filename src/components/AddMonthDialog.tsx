@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import { CommonButton } from './Buttons.tsx';
-import InputField from './form/InputField.tsx'; // assumindo esse caminho para seu input genérico
+import { CommonButton } from './Buttons';
+import InputField from './form/InputField'; // assumindo esse caminho para seu input genérico
 import { colors, fonts, borders, spacing } from '../styles/designSystem';
 
 interface AddMonthDialogProps {

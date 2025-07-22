@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MoreVertical } from 'lucide-react';
-import { CommonButton } from './Buttons.tsx'; // ajuste o caminho se precisar
+import { CommonButton } from './Buttons'; // ajuste o caminho se precisar
 
 interface ActionMenuButtonProps {
   onEdit: () => void;

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import {CommonButton} from './Buttons.tsx';
+import {CommonButton} from './Buttons';
 
 const WorldCard = ({ world }) => {
   const navigate = useNavigate();
