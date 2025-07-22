@@ -40,8 +40,8 @@ const WorldList: React.FC = () => {
     <>
   <Header />
 
-  <div style={{ paddingLeft: spacing.lg, paddingTop: spacing.lg }} className="p-6 max-w-screen-lg mx-auto">
-    <FormWrapper title="Your Worlds" onSubmit={(e) => e.preventDefault()}>
+  <div className="p-6 max-w-screen-lg mx-auto text-center">
+    <FormWrapper title="My Worlds" onSubmit={(e) => e.preventDefault()}>
       {worlds.length === 0 ? (
         <div className="mt-12 flex flex-col items-center px-4 sm:px-8">
           <p className="mb-4 text-gray-700 text-lg text-center max-w-md">
