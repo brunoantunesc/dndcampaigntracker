@@ -15,6 +15,8 @@ import Dashboard from './pages/Dashboard';
 import {jwtDecode} from 'jwt-decode';
 import CreateCalendar from './pages/calendars/CreateCalendar.tsx';
 import CreateWorld from './pages/worlds/CreateWorld.tsx';
+import CreateCampaign from './pages/campaigns/CreateCampaign.tsx';
+import EditCampaign from './pages/campaigns/EditCampaign.tsx';
 
 /*
 // import WorldsList from './pages/worlds/WorldsList';
@@ -40,6 +42,7 @@ const componentMap = {
   CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList.tsx')),
   CharacterList: React.lazy(() => import('./pages/characters/CharacterList')),
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
+  ArcList: React.lazy(() => import('./pages/arcs/ArcList.tsx')),
   CalendarList: React.lazy(() => import('./pages/calendars/CalendarList.tsx')),
 };
 
@@ -132,6 +135,24 @@ function App() {
           <React.Suspense fallback={<div>Loading...</div>}>
             <CreateCalendar />
           </React.Suspense>
+          }
+        />
+        
+        <Route
+          path="/campaigns/create"
+          element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <CreateCampaign />
+          </React.Suspense>
+          }
+        />
+
+        <Route
+          path="/campaigns/edit/:id"
+          element={
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <EditCampaign />
+            </React.Suspense>
           }
         />
       </Routes>
