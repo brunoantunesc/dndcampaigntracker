@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 import { colors, fonts, spacing, borders } from '../../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
 import { CommonButton } from './Buttons';
 import { resetLocalStorage } from '../../utils/authFetch';
+import { Compass } from 'lucide-react'	
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const location = useLocation();
+
+  const getPageContext = (pathname: string): { url: string; text: string; } => {
+    const section = pathname.split('/')[1];
+    if (!section) return {url: '', text: 'Home'};
+    return {url: section, text: section.charAt(0).toUpperCase() + section.slice(1)};
+  };
+  const currentSection = getPageContext(location.pathname);
 
   const handleLogout = (): void => {
     resetLocalStorage();
@@ -23,6 +32,10 @@ const Header: React.FC = () => {
     setDrawerOpen(false);
   };
 
+  const handleNavigation = () => {
+    navigate(`/${currentSection.url}`)
+  }
+
   return (
     <>
       <header style={headerStyle}>
@@ -33,8 +46,12 @@ const Header: React.FC = () => {
         >
           <Menu color={colors.primary} size={28} />
         </div>
-        <div className="cursor-pointer" onClick={() => navigate('/')} style={logoStyle}>
-          WorldBuilder
+        <div className={`${currentSection.url !== '' ? 'cursor-pointer' : ''}`} style={logoStyle}>
+          <div className="flex items-center gap-2 text-white text-md">
+            <span onClick={() => navigate('/')} className="font-bold text-cyan-400">WorldBuilder </span>
+            <Compass size={30} className="text-cyan-400 mx-4" />
+            <span onClick={handleNavigation} className="text-gray-300"> {currentSection.text}</span>
+          </div>
         </div>
         <CommonButton
           onClick={handleLogout}
