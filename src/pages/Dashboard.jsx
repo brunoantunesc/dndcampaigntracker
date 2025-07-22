@@ -1,11 +1,11 @@
 // src/pages/Home.jsx
 
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import Header from '../components/ui/Header';
 import { useNavigate } from 'react-router-dom';
 import { authFetch } from '../utils/authFetch';
 import FormWrapper from '../components/form/FormWrapper';
-import {CommonButton} from '../components/Buttons';
+import {CommonButton} from '../components/ui/Buttons';
 import { spacing } from '../styles/designSystem.js';
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { colors, fonts, spacing, borders } from '../styles/designSystem';
+import { colors, fonts, spacing, borders } from '../../styles/designSystem';
 import { Link } from 'react-router-dom';
 
 interface Route {

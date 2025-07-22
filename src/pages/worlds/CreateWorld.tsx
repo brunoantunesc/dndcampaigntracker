@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import InputField from "../../components/form/InputField"
-import { CommonButton } from '../../components/Buttons';
+import { CommonButton } from '../../components/ui/Buttons';
 import SelectField from '../../components/form/SelectField';
 import { authFetch } from '../../utils/authFetch';
 import FormWrapper from '../../components/form/FormWrapper';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { colors, fonts, spacing, borders } from '../styles/designSystem';
+import { colors, fonts, spacing, borders } from '../../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
 import { CommonButton } from './Buttons';
-import { resetLocalStorage } from '../utils/authFetch';
+import { resetLocalStorage } from '../../utils/authFetch';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();

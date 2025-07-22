@@ -1,9 +1,9 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authFetch } from '../../utils/authFetch';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import InputField from '../../components/form/InputField';
-import { ToggleButton, CommonButton } from '../../components/Buttons';
+import { ToggleButton, CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
 

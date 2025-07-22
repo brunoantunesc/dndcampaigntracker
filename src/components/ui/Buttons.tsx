@@ -1,7 +1,7 @@
 // src/components/CommonButton
 import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
-import { colors, fonts, spacing } from '../styles/designSystem';
+import { colors, fonts, spacing } from '../../styles/designSystem';
 
 type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'mini' | 'miniDanger' | 'action';

@@ -3,8 +3,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import { CommonButton } from './Buttons';
-import InputField from './form/InputField'; // assumindo esse caminho para seu input genérico
-import { colors, fonts, borders, spacing } from '../styles/designSystem';
+import InputField from '../form/InputField'; // assumindo esse caminho para seu input genérico
+import { colors, fonts, borders, spacing } from '../../styles/designSystem';
 
 interface AddMonthDialogProps {
   open: boolean;
