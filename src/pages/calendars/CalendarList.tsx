@@ -1,5 +1,6 @@
 // src/pages/calendars/CalendarsList
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import axios from 'axios';
 import FormWrapper from '../../components/form/FormWrapper';
@@ -11,6 +12,8 @@ import { CardItem } from '../../components/ui/Cards';
 const CalendarsList: React.FC = () => {
   const [calendars, setCalendars] = useState<Calendar[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchCalendars = async () => {
@@ -48,7 +51,11 @@ const CalendarsList: React.FC = () => {
       ) : (
         <ul className="space-y-4">
           {calendars.map((calendar) => (
-            <CardItem key={calendar._id}>
+            <CardItem 
+              key={calendar._id}
+              onEdit={() => navigate(`/calendars/edit/${calendar._id}`)}
+              onDelete={() => console.log(`Delete arc ${calendar._id} (future implementation)`)}
+            >
               <h2 className="text-lg font-bold text-white">{calendar.name}</h2>
               <p className="text-xs text-gray-500 mt-1">
                 Months per year: {calendar.months.length}

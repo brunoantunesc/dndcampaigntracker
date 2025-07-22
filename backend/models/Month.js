@@ -10,6 +10,12 @@ const monthSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  order: {
+    type: Number,
+    default: null,
+  },
 });
+
+monthSchema.index({ calendar: 1, order: 1 }, { unique: true });
 
 module.exports = mongoose.model('Month', monthSchema);
