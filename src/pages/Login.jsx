@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {CommonButton} from '../components/Buttons'
+import {CommonButton} from '../components/ui/Buttons'
 import { fetchRoutes } from '../services/api';
 
 export default function Login() {

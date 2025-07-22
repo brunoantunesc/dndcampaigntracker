@@ -1,9 +1,9 @@
 // src/pages/calendars/CalendarsList
 import React, { useEffect, useState } from 'react';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import axios from 'axios';
 import FormWrapper from '../../components/form/FormWrapper';
-import {CommonButton} from '../../components/Buttons';
+import {CommonButton} from '../../components/ui/Buttons';
 import { spacing } from '../../styles/designSystem.js';
 import { Calendar } from '../../interfaces/Calendar';
 

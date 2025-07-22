@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import FormWrapper from '../../components/form/FormWrapper';
-import { CommonButton } from '../../components/Buttons';
+import { CommonButton } from '../../components/ui/Buttons';
 import { authFetch } from '../../utils/authFetch.js';
 import { spacing } from '../../styles/designSystem.js';
 import { World } from '../../interfaces/World';

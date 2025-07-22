@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import FormWrapper from '../../components/form/FormWrapper';
-import { CommonButton, ToggleButton } from '../../components/Buttons';
+import { CommonButton, ToggleButton } from '../../components/ui/Buttons';
 import InputField from '../../components/form/InputField';
 import { spacing } from '../../styles/designSystem';
-import AddMonthDialog from '../../components/AddMonthDialog';
+import AddMonthDialog from '../../components/ui/AddMonthDialog';
 
 interface Month {
   _id: string;

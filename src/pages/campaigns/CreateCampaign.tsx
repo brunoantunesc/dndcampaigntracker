@@ -1,10 +1,10 @@
 // src/pages/campaigns/CreateCampaign
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
+import Header from '../../components/ui/Header';
 import InputField from '../../components/form/InputField';
 import SelectField from '../../components/form/SelectField';
-import { CommonButton } from '../../components/Buttons';
+import { CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
 import { World } from '../../interfaces/World';
