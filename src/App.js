@@ -37,7 +37,7 @@ import CreateWorld from './pages/worlds/CreateWorld.tsx';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList.tsx')),
-  CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList')),
+  CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList.tsx')),
   CharacterList: React.lazy(() => import('./pages/characters/CharacterList')),
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
   CalendarList: React.lazy(() => import('./pages/calendars/CalendarList.tsx')),
