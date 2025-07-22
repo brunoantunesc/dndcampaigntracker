@@ -39,8 +39,8 @@ const CalendarsList: React.FC = () => {
 
     <Header />
 
-    <div style={{paddingLeft: spacing.lg, paddingTop: spacing.lg}} className="p-6 max-w-screen-lg mx-auto">
-    <FormWrapper title="Meus Calendários" onSubmit={(e) => e.preventDefault()}>
+    <div className="p-6 max-w-screen-lg mx-auto text-center">
+    <FormWrapper title="My Calendars" onSubmit={(e) => e.preventDefault()}>
       <div style={{paddingTop: spacing.xl}}>
       {calendars.length === 0 ? (
         <p className="text-gray-400">No calendar found.</p>
@@ -50,7 +50,9 @@ const CalendarsList: React.FC = () => {
             <li key={calendar._id} className="p-4 border border-blue-500 rounded-lg">
               <h2 className="text-lg font-bold text-white">{calendar.name}</h2>
               <p className="text-xs text-gray-500 mt-1">
-                Months: {calendar.months.length}
+                Months per year: {calendar.months.length}
+                <br />
+                Days per year: {calendar.months.reduce((total, month) => total + month.days, 0)}
               </p>
             </li>
           ))}

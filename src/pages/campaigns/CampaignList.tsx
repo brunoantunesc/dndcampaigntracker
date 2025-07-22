@@ -7,6 +7,7 @@ import { CommonButton } from '../../components/Buttons.tsx';
 import { authFetch } from '../../utils/authFetch.js';
 import { spacing } from '../../styles/designSystem.js';
 import { Campaign } from '../../interfaces/Campaign.tsx';
+import ActionMenuButton from '../../components/ActionMenuButton.tsx';
 
 const CampaignsList: React.FC = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -42,17 +43,16 @@ const CampaignsList: React.FC = () => {
       <Header />
 
       <div
-        style={{ paddingLeft: spacing.lg, paddingTop: spacing.lg }}
-        className="p-6 max-w-screen-lg mx-auto"
+        className="p-6 max-w-screen-lg mx-auto text-center"
       >
-        <FormWrapper title="Minhas Campanhas" onSubmit={(e) => e.preventDefault()}>
+        <FormWrapper title="My Campaigns" onSubmit={(e) => e.preventDefault()}>
           <div style={{ paddingTop: spacing.xl }}>
             {campaigns.length === 0 ? (
-              <p className="text-gray-400">Nenhuma campanha encontrada.</p>
+              <p className="text-gray-400">No campaigns found</p>
             ) : (
               <ul className="space-y-4">
                 {campaigns.map((campaign) => (
-                  <li key={campaign._id} className="p-4 border border-cyan-400 rounded-lg">
+                  <li key={campaign._id} className="p-4 border border-cyan-400 rounded-lg relative">
                     <h2 className="text-lg font-bold text-white">{campaign.name}</h2>
                     <p className="text-xs text-gray-500 mt-1">
                       Mundo: <span className="text-white">{campaign.world?.name}</span>
@@ -60,14 +60,21 @@ const CampaignsList: React.FC = () => {
                     <p className="text-xs text-gray-500 mt-1">
                       Início: {new Date(campaign.startDate).toLocaleDateString()}
                     </p>
-                    {campaign.endDate && (
-                      <p className="text-xs text-gray-500">
-                        Fim: {new Date(campaign.endDate).toLocaleDateString()}
-                      </p>
-                    )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      Fim: {campaign.endDate ? new Date(campaign.endDate).toLocaleDateString() : '-'}
+                    </p>
                     <p className="text-xs text-gray-500 mt-1">
                       Arcos: {campaign.arcs?.length ?? 0}
                     </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Sessões: { /* TODO: Mapear todos os arcos para obter o número de sessões */ 0 }
+                    </p>
+                    <div className="absolute top-2 right-2">
+                      <ActionMenuButton
+                        onEdit={() => navigate(`/campaigns/edit/${campaign._id}`)}
+                        onDelete={() => console.log(`Deletar campanha ${campaign._id} (implementação futura)`)}
+                      />
+                    </div>
                   </li>
                 ))}
               </ul>

@@ -10,6 +10,7 @@ interface InputFieldProps {
   placeholder?: string;
   type?: string;
   inputRef?: React.Ref<HTMLInputElement>;
+  readOnly?: boolean
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -20,6 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   type = 'text',
   inputRef,
+  readOnly = false
 }) => (
   <div style={{ paddingTop: spacing.md }} className="mb-4">
     <label className="block text-sm font-medium mb-1" htmlFor={name}>
@@ -33,6 +35,7 @@ const InputField: React.FC<InputFieldProps> = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      disabled={readOnly}
       ref={inputRef}
       className="w-full px-3 py-2 border rounded-md bg-black border-blue-400 text-white focus:outline-none focus:ring-2 focus:ring-blue-300"
     />
