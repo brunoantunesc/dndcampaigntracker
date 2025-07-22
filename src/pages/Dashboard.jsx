@@ -40,7 +40,7 @@ const Home = () => {
     <>
     <Header />
 
-    <div style={{ paddingLeft: spacing.lg, paddingTop: spacing.lg }} className="flex flex-col items-center px-4 sm:px-8">
+    <div style={{ paddingLeft: spacing.lg, paddingTop: spacing.lg }} className="flex flex-col items-center text-center px-4 sm:px-8">
         <div className="mb-8">
           Welcome back, {userName}!
         </div>
