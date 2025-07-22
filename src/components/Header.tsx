@@ -3,23 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { colors, fonts, spacing, borders } from '../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
-import {CommonButton} from './Buttons.tsx'
-import { resetLocalStorage } from '../utils/authFetch.js';
+import { CommonButton } from './Buttons';
+import { resetLocalStorage } from '../utils/authFetch';
 
-const Header = () => {
+const Header: React.FC = () => {
   const navigate = useNavigate();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const handleLogout = () => {
-    resetLocalStorage()
+  const handleLogout = (): void => {
+    resetLocalStorage();
     navigate('/login');
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     setDrawerOpen(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setDrawerOpen(false);
   };
 
@@ -33,7 +33,9 @@ const Header = () => {
         >
           <Menu color={colors.primary} size={28} />
         </div>
-        <div className="cursor-pointer" onClick={() => navigate('/')} style={logoStyle}>WorldBuilder</div>
+        <div className="cursor-pointer" onClick={() => navigate('/')} style={logoStyle}>
+          WorldBuilder
+        </div>
         <CommonButton
           onClick={handleLogout}
           variant="secondary"
@@ -43,22 +45,19 @@ const Header = () => {
           <LogOut color={colors.secondary} size={24} />
         </CommonButton>
       </header>
-      
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <DrawerMenu isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </div>
     </>
   );
 };
 
-const headerStyle = {
+const headerStyle: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  backgroundColor: colors.dark,
+  backgroundColor: colors.background,
   padding: '1rem 2rem',
   borderBottom: `2px solid ${colors.primary}`,
   boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
@@ -66,7 +65,7 @@ const headerStyle = {
   zIndex: 10,
 };
 
-const hamburgerContainerStyle = {
+const hamburgerContainerStyle: React.CSSProperties = {
   cursor: 'pointer',
   padding: spacing.sm,
   display: 'flex',
@@ -76,7 +75,7 @@ const hamburgerContainerStyle = {
   width: '60px',
 };
 
-const logoStyle = {  
+const logoStyle: React.CSSProperties = {
   position: 'absolute',
   left: '50%',
   transform: 'translateX(-50%)',

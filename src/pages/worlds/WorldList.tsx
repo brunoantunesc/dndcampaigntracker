@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header.jsx';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
-import { CommonButton } from '../../components/Buttons.tsx';
+import Header from '../../components/Header';
+import FormWrapper from '../../components/form/FormWrapper';
+import { CommonButton } from '../../components/Buttons';
 import { authFetch } from '../../utils/authFetch.js';
 import { spacing } from '../../styles/designSystem.js';
-import { World } from '../../interfaces/World.tsx';
+import { World } from '../../interfaces/World';
 
 const WorldList: React.FC = () => {
   const [worlds, setWorlds] = useState<World[]>([]);

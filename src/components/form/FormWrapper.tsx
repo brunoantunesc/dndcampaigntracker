@@ -1,4 +1,4 @@
-// src/components/Form/FormWrapper.tsx
+// src/components/Form/FormWrapper
 import React from 'react';
 
 interface FormWrapperProps {

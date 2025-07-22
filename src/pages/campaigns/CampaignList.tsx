@@ -1,13 +1,13 @@
-// src/pages/campaigns/CampaignsList.tsx
+// src/pages/campaigns/CampaignsList
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header.jsx';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
-import { CommonButton } from '../../components/Buttons.tsx';
+import Header from '../../components/Header';
+import FormWrapper from '../../components/form/FormWrapper';
+import { CommonButton } from '../../components/Buttons';
 import { authFetch } from '../../utils/authFetch.js';
 import { spacing } from '../../styles/designSystem.js';
-import { Campaign } from '../../interfaces/Campaign.tsx';
-import ActionMenuButton from '../../components/ActionMenuButton.tsx';
+import { Campaign } from '../../interfaces/Campaign';
+import ActionMenuButton from '../../components/ActionMenuButton';
 
 const CampaignsList: React.FC = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);

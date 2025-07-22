@@ -1,4 +1,4 @@
-// src/components/ui/Select.tsx
+// src/components/ui/Select
 import React from 'react';
 import { spacing } from '../../styles/designSystem';
 

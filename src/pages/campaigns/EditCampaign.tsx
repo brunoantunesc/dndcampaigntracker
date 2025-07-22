@@ -2,9 +2,9 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authFetch } from '../../utils/authFetch';
 import Header from '../../components/Header';
-import InputField from '../../components/form/InputField.tsx';
-import { ToggleButton, CommonButton } from '../../components/Buttons.tsx';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
+import InputField from '../../components/form/InputField';
+import { ToggleButton, CommonButton } from '../../components/Buttons';
+import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
 
 interface World {

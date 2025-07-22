@@ -1,13 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import InputField from "../../components/form/InputField.tsx"
-import { CommonButton } from '../../components/Buttons.tsx';
-import SelectField from '../../components/form/SelectField.tsx';
+import InputField from "../../components/form/InputField"
+import { CommonButton } from '../../components/Buttons';
+import SelectField from '../../components/form/SelectField';
 import { authFetch } from '../../utils/authFetch';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
+import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
-import { Calendar } from '../../interfaces/Calendar.tsx';
+import { Calendar } from '../../interfaces/Calendar';
 
 interface WorldFormData {
   name: string;

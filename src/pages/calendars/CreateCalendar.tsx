@@ -1,13 +1,13 @@
-// src/pages/calendars/CreateCalendar.tsx
+// src/pages/calendars/CreateCalendar
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
-import { CommonButton, ToggleButton } from '../../components/Buttons.tsx';
-import InputField from '../../components/form/InputField.tsx';
+import FormWrapper from '../../components/form/FormWrapper';
+import { CommonButton, ToggleButton } from '../../components/Buttons';
+import InputField from '../../components/form/InputField';
 import { spacing } from '../../styles/designSystem';
-import AddMonthDialog from '../../components/AddMonthDialog.tsx';
+import AddMonthDialog from '../../components/AddMonthDialog';
 
 interface Month {
   _id: string;

@@ -1,13 +1,13 @@
-// src/pages/campaigns/CreateCampaign.tsx
+// src/pages/campaigns/CreateCampaign
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import InputField from '../../components/form/InputField.tsx';
-import SelectField from '../../components/form/SelectField.tsx';
-import { CommonButton } from '../../components/Buttons.tsx';
-import FormWrapper from '../../components/form/FormWrapper.tsx';
+import InputField from '../../components/form/InputField';
+import SelectField from '../../components/form/SelectField';
+import { CommonButton } from '../../components/Buttons';
+import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
-import { World } from '../../interfaces/World.tsx';
+import { World } from '../../interfaces/World';
 import { authFetch } from '../../utils/authFetch.js';
 
 interface CampaignFormData {

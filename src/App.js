@@ -13,10 +13,10 @@ import { fetchRoutes } from './services/api';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import {jwtDecode} from 'jwt-decode';
-import CreateCalendar from './pages/calendars/CreateCalendar.tsx';
-import CreateWorld from './pages/worlds/CreateWorld.tsx';
-import CreateCampaign from './pages/campaigns/CreateCampaign.tsx';
-import EditCampaign from './pages/campaigns/EditCampaign.tsx';
+import CreateCalendar from './pages/calendars/CreateCalendar';
+import CreateWorld from './pages/worlds/CreateWorld';
+import CreateCampaign from './pages/campaigns/CreateCampaign';
+import EditCampaign from './pages/campaigns/EditCampaign';
 
 /*
 // import WorldsList from './pages/worlds/WorldsList';
@@ -38,12 +38,12 @@ import EditCampaign from './pages/campaigns/EditCampaign.tsx';
 */
 
 const componentMap = {
-  WorldList: React.lazy(() => import('./pages/worlds/WorldList.tsx')),
-  CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList.tsx')),
+  WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
+  CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList')),
   CharacterList: React.lazy(() => import('./pages/characters/CharacterList')),
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
-  ArcList: React.lazy(() => import('./pages/arcs/ArcList.tsx')),
-  CalendarList: React.lazy(() => import('./pages/calendars/CalendarList.tsx')),
+  ArcList: React.lazy(() => import('./pages/arcs/ArcList')),
+  CalendarList: React.lazy(() => import('./pages/calendars/CalendarList')),
 };
 
 const useAuth = () => {
