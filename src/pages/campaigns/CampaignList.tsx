@@ -8,6 +8,7 @@ import { authFetch } from '../../utils/authFetch.js';
 import { spacing } from '../../styles/designSystem.js';
 import { Campaign } from '../../interfaces/Campaign';
 import ActionMenuButton from '../../components/ui/ActionMenuButton';
+import { CardItem } from '../../components/ui/Cards';
 
 const CampaignsList: React.FC = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -52,7 +53,11 @@ const CampaignsList: React.FC = () => {
             ) : (
               <ul className="space-y-4">
                 {campaigns.map((campaign) => (
-                  <li key={campaign._id} className="p-4 border border-cyan-400 rounded-lg relative">
+                  <CardItem 
+                    key={campaign._id} 
+                    onEdit={() => navigate(`/campaigns/edit/${campaign._id}`)}
+                    onDelete={() => console.log(`Deletar campanha ${campaign._id} (implementação futura)`)}
+                  >
                     <h2 className="text-lg font-bold text-white">{campaign.name}</h2>
                     <p className="text-xs text-gray-500 mt-1">
                       Mundo: <span className="text-white">{campaign.world?.name}</span>
@@ -67,15 +72,9 @@ const CampaignsList: React.FC = () => {
                       Arcos: {campaign.arcs?.length ?? 0}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Sessões: { /* TODO: Mapear todos os arcos para obter o número de sessões */ 0 }
+                      Sessões: { /* TODO: Mapear todos os arcos para obter o número de sessões */ campaign.arcs?.reduce((total, arc) => total + arc.sessions?.length, 0) }
                     </p>
-                    <div className="absolute top-2 right-2">
-                      <ActionMenuButton
-                        onEdit={() => navigate(`/campaigns/edit/${campaign._id}`)}
-                        onDelete={() => console.log(`Deletar campanha ${campaign._id} (implementação futura)`)}
-                      />
-                    </div>
-                  </li>
+                  </CardItem>
                 ))}
               </ul>
             )}

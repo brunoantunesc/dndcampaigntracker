@@ -3,8 +3,8 @@ import { MoreVertical } from 'lucide-react';
 import { CommonButton } from './Buttons'; // ajuste o caminho se precisar
 
 interface ActionMenuButtonProps {
-  onEdit: () => void;
-  onDelete: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
 } 
 
 const ActionMenuButton: React.FC<ActionMenuButtonProps> = ({ onEdit, onDelete }) => {
@@ -48,8 +48,9 @@ const ActionMenuButton: React.FC<ActionMenuButtonProps> = ({ onEdit, onDelete })
         >
           <CommonButton
             variant="mini"
+            disabled={!onEdit}
             onClick={() => {
-              onEdit();
+              if (onEdit) {onEdit()};
               setOpen(false);
             }}
             className="w-full rounded-t-none rounded-b px-3 py-2 text-left"
@@ -59,8 +60,9 @@ const ActionMenuButton: React.FC<ActionMenuButtonProps> = ({ onEdit, onDelete })
           </CommonButton>
           <CommonButton
             variant="miniDanger"
+            disabled={!onDelete}
             onClick={() => {
-              onDelete();
+              if (onDelete) onDelete();
               setOpen(false);
             }}
             className="w-full rounded-t-none rounded-b px-3 py-2 text-left"

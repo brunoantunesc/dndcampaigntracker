@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           className="p-2"
           aria-label="Logout"
         >
-          <LogOut color={colors.secondary} size={24} />
+          <LogOut color={colors.background} size={24} />
         </CommonButton>
       </header>
 

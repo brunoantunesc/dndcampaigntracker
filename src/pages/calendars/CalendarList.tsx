@@ -6,6 +6,7 @@ import FormWrapper from '../../components/form/FormWrapper';
 import {CommonButton} from '../../components/ui/Buttons';
 import { spacing } from '../../styles/designSystem.js';
 import { Calendar } from '../../interfaces/Calendar';
+import { CardItem } from '../../components/ui/Cards';
 
 const CalendarsList: React.FC = () => {
   const [calendars, setCalendars] = useState<Calendar[]>([]);
@@ -47,14 +48,14 @@ const CalendarsList: React.FC = () => {
       ) : (
         <ul className="space-y-4">
           {calendars.map((calendar) => (
-            <li key={calendar._id} className="p-4 border border-blue-500 rounded-lg">
+            <CardItem key={calendar._id}>
               <h2 className="text-lg font-bold text-white">{calendar.name}</h2>
               <p className="text-xs text-gray-500 mt-1">
                 Months per year: {calendar.months.length}
                 <br />
                 Days per year: {calendar.months.reduce((total, month) => total + month.days, 0)}
               </p>
-            </li>
+            </CardItem>
           ))}
         </ul>
       )}
