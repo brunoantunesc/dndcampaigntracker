@@ -66,8 +66,8 @@ app.get('/routes', authenticateToken, (req, res) => {
     { path: '/worlds', label: 'Worlds', component: 'WorldList' },
     { path: '/calendars', label: 'Calendars', component: 'CalendarList' },
     { path: '/campaigns', label: 'Campaigns', component: 'CampaignList' },
-    { path: '/characters', label: 'Characters', component: 'CharacterList' },
     { path: '/sessions', label: 'Sessions', component: 'SessionList' },
+    { path: '/characters', label: 'Characters', component: 'CharacterList' },
   ]);
 });
 

@@ -1,7 +1,7 @@
 // backend/models/Campaign.js
 const mongoose = require('mongoose');
 
-const campaignSchema = new mongoose.Schema({
+const arcSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -10,10 +10,9 @@ const campaignSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  arc: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Arc',
-    required: false,
+  title: {
+    type: String,
+    required: true,
   },
   characters: [{
     type: mongoose.Schema.Types.ObjectId,
