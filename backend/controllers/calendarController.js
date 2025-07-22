@@ -23,6 +23,15 @@ exports.getCalendars = async (req, res) => {
   }
 };
 
+exports.getCalendarById = async (req, res) => {
+  try {
+    const calendar = await Calendar.findById(req.params.id).populate('months');
+    res.json(calendar);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar calendário', error });
+  }
+};
+
 
 exports.updateCalendar = async (req, res) => {
   try {

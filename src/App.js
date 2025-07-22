@@ -15,6 +15,7 @@ import CreateArc from './pages/arcs/CreateArc';
 import EditArc from './pages/arcs/EditArc';
 import CharacterCreate from './pages/characters/CreateCharacter';
 import EditCharacter from './pages/characters/EditCharacter';
+import EditCalendar from './pages/calendars/EditCalendar';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -148,6 +149,15 @@ function App() {
             element={
               <React.Suspense fallback={<div>Loading...</div>}>
                 <EditCharacter />
+              </React.Suspense>
+            }
+          />
+          
+          <Route
+            path="/calendars/edit/:id"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <EditCalendar />
               </React.Suspense>
             }
           />
