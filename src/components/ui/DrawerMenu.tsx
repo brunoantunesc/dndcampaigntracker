@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { colors, fonts, spacing, borders } from '../../styles/designSystem';
 import { Link, useLocation } from 'react-router-dom';
-
+import { useRoutes } from '../../contexts/RoutesContext';
 
 interface Route {
   path: string;
@@ -14,46 +14,33 @@ interface DrawerMenuProps {
 }
 
 const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpen, onClose }) => {
-  const [routes, setRoutes] = useState<Route[]>([]);
+  const { routes } = useRoutes();
   const location = useLocation();
 
-  useEffect(() => {
-    const storedRoutes = localStorage.getItem('routes');
-    if (storedRoutes) {
-      try {
-        const parsedRoutes: Route[] = JSON.parse(storedRoutes);
-        setRoutes(parsedRoutes);
-      } catch {
-        // Caso JSON inválido, limpa as rotas
-        setRoutes([]);
-      }
-    }
-  }, []);
+  // não precisa mais do useEffect que lê localStorage
 
   return (
     <>
-      {isOpen && (
-        <div
-          onClick={onClose}
-          style={backdropStyle}
-        />
-      )}
+      {isOpen && <div onClick={onClose} style={backdropStyle} />}
       <nav style={{ ...drawerStyle, left: isOpen ? 0 : -250 }}>
         <ul style={listStyle}>
           {routes.map(({ path, label }) => {
             const isActive = location.pathname === path;
-    
+
             return (
-            <li key={path}>
-              {isActive ? (
-                <span style={{ ...linkStyle, cursor: 'default', opacity: 0.6 }}>
-                  {label}
-                </span>
-              ) : (
-                <Link style={linkStyle} to={path}>{label}</Link>
-              )}
-            </li>
-          )})}
+              <li key={path}>
+                {isActive ? (
+                  <span style={{ ...linkStyle, cursor: 'default', opacity: 0.6 }}>
+                    {label}
+                  </span>
+                ) : (
+                  <Link style={linkStyle} to={path}>
+                    {label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </>

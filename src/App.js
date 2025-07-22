@@ -1,41 +1,14 @@
 // src/App.jsx
-import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-  useLocation, 
-  useNavigate
-} from 'react-router-dom';
-import { fetchRoutes } from './services/api';
+import React from 'react';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import {jwtDecode} from 'jwt-decode';
 import CreateCalendar from './pages/calendars/CreateCalendar';
 import CreateWorld from './pages/worlds/CreateWorld';
 import CreateCampaign from './pages/campaigns/CreateCampaign';
 import EditCampaign from './pages/campaigns/EditCampaign';
-
-/*
-// import WorldsList from './pages/worlds/WorldsList';
-// import WorldForm from './pages/worlds/WorldForm';
-// import WorldDetails from './pages/worlds/WorldDetails';
-
-// import CampaignsList from './pages/campaigns/CampaignsList';
-// import CampaignForm from './pages/campaigns/CampaignForm';
-// import CampaignDetails from './pages/campaigns/CampaignDetails';
-
-// import CharactersList from './pages/characters/CharactersList';
-// import PcForm from './pages/characters/PcForm';
-// import NpcForm from './pages/characters/NpcForm';
-// import CharacterDetails from './pages/characters/CharacterDetails';
-
-// import SessionsList from './pages/sessions/SessionsList';
-// import SessionForm from './pages/sessions/SessionForm';
-// import SessionDetails from './pages/sessions/SessionDetails';
-*/
+import { useAuth } from './contexts/AuthContext';
+import { RoutesProvider, useRoutes } from './contexts/RoutesContext';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -46,117 +19,78 @@ const componentMap = {
   CalendarList: React.lazy(() => import('./pages/calendars/CalendarList')),
 };
 
-const useAuth = () => {
-  const token = localStorage.getItem('token');
-  return !!token;
-};
-
-// Protected route redirects to login if no token
+// Rota protegida que verifica o token no contexto Auth
 const PrivateRoute = () => {
-  const auth = useAuth();
-  return auth ? <Outlet /> : <Navigate to="/login" />;
+  const { token } = useAuth();
+  return token ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 function App() {
-  const [routes, setRoutes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
-  const navigate = useNavigate();
+  // Pegamos as rotas do contexto RoutesContext
+  const { routes, loading } = useRoutes();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const { exp } = jwtDecode(token);
-        if (Date.now() >= exp * 1000) {
-          localStorage.removeItem('token');
-          navigate('/login', { replace: true });
-        }
-      } catch {
-        localStorage.removeItem('token');
-        navigate('/login', { replace: true });
-      }
-    }
-  }, [location, navigate]);
-
-  useEffect(() => {
-  async function loadRoutes() {
-    const storedRoutes = localStorage.getItem('routes');
-    if (storedRoutes) {
-      setRoutes(JSON.parse(storedRoutes));
-      setLoading(false);
-    } else {
-      const data = await fetchRoutes();
-      setRoutes(data);
-      setLoading(false);
-      localStorage.setItem('routes', JSON.stringify(data));
-    }
-  }
-  loadRoutes();
-}, []);
   if (loading) return <div>Loading...</div>;
 
   return (
-    <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={
-      localStorage.getItem('token') ? <Dashboard /> : <Navigate to="/login" replace />
-    } />
-        {routes.map(({ path, component }) => {
-          const Component = componentMap[component];
-          if (!Component) return null;
-          return (
-            <Route
-              key={path}
-              path={path}
-              element={
-                <React.Suspense fallback={<div>Loading page...</div>}>
-                  <Component />
-                </React.Suspense>
-              }
-            />
-          );
-        })}
 
-        {/* Rotas Estáticas */}
-        <Route
-          path="/worlds/create"
-          element={
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <CreateWorld />
-          </React.Suspense>
-          }
-        />
-        
-        <Route
-          path="/calendars/create"
-          element={
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <CreateCalendar />
-          </React.Suspense>
-          }
-        />
-        
-        <Route
-          path="/campaigns/create"
-          element={
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <CreateCampaign />
-          </React.Suspense>
-          }
-        />
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Dashboard />} />
+          {routes.map(({ path, component }) => {
+            const Component = componentMap[component];
+            if (!Component) return null;
+            return (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <React.Suspense fallback={<div>Loading page...</div>}>
+                    <Component />
+                  </React.Suspense>
+                }
+              />
+            );
+          })}
 
-        <Route
-          path="/campaigns/edit/:id"
-          element={
-            <React.Suspense fallback={<div>Loading...</div>}>
-              <EditCampaign />
-            </React.Suspense>
-          }
-        />
+          {/* Rotas estáticas protegidas */}
+          <Route
+            path="/worlds/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CreateWorld />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/calendars/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CreateCalendar />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/campaigns/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CreateCampaign />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/campaigns/edit/:id"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <EditCampaign />
+              </React.Suspense>
+            }
+          />
+        </Route>
       </Routes>
-    </>
   );
 }
 

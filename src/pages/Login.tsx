@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {CommonButton} from '../components/ui/Buttons'
+import { CommonButton } from '../components/ui/Buttons';
+import { useAuth } from '../contexts/AuthContext';
+import { useRoutes } from '../contexts/RoutesContext';
 import { fetchRoutes } from '../services/api';
 
 export default function Login() {
@@ -8,8 +10,10 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const { setRoutes } = useRoutes();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -27,9 +31,12 @@ export default function Login() {
         return;
       }
 
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userName', data.name);
-      await fetchRoutes()
+      login(data.token, data.name);
+
+      const dataRoutes = await fetchRoutes();
+      setRoutes(dataRoutes);
+      localStorage.setItem('routes', JSON.stringify(dataRoutes));
+
       navigate('/');
     } catch (err) {
       setError('Erro ao conectar com o servidor');
