@@ -13,7 +13,8 @@ import { fetchRoutes } from './services/api';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import {jwtDecode} from 'jwt-decode';
-import CreateWorld from './pages/worlds/CreateWorld';
+import CreateCalendar from './pages/calendars/CreateCalendar.tsx';
+import CreateWorld from './pages/worlds/CreateWorld.tsx';
 
 /*
 // import WorldsList from './pages/worlds/WorldsList';
@@ -33,13 +34,13 @@ import CreateWorld from './pages/worlds/CreateWorld';
 // import SessionForm from './pages/sessions/SessionForm';
 // import SessionDetails from './pages/sessions/SessionDetails';
 */
-const createWorld = React.lazy(() => import('./pages/worlds/CreateWorld'));
 
 const componentMap = {
-  WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
+  WorldList: React.lazy(() => import('./pages/worlds/WorldList.tsx')),
   CampaignList: React.lazy(() => import('./pages/campaigns/CampaignList')),
   CharacterList: React.lazy(() => import('./pages/characters/CharacterList')),
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
+  CalendarList: React.lazy(() => import('./pages/calendars/CalendarList.tsx')),
 };
 
 const useAuth = () => {
@@ -121,6 +122,15 @@ function App() {
           element={
           <React.Suspense fallback={<div>Loading...</div>}>
             <CreateWorld />
+          </React.Suspense>
+          }
+        />
+        
+        <Route
+          path="/calendars/create"
+          element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <CreateCalendar />
           </React.Suspense>
           }
         />

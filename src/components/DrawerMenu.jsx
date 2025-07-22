@@ -57,11 +57,18 @@ const backdropStyle = {
   zIndex: 1000,
 };
 
+const logoStyle = {  
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  fontSize: '1.5rem',
+  fontFamily: fonts.main,
+  color: colors.primary,
+};
+
 const listStyle = {
-  marginTop: spacing.md,
   listStyle: 'none',
   padding: 0,
-  paddingTop: spacing.xxl,
   margin: 0,
 };
 

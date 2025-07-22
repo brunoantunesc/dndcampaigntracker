@@ -3,16 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { colors, fonts, spacing, borders } from '../styles/designSystem';
 import DrawerMenu from './DrawerMenu';
 import { Menu, LogOut } from 'lucide-react';
-import CommonButton from './Buttons'
+import {CommonButton} from './Buttons.tsx'
+import { resetLocalStorage } from '../utils/authFetch.js';
 
 const Header = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-
+    resetLocalStorage()
     navigate('/login');
   };
 
@@ -34,7 +33,7 @@ const Header = () => {
         >
           <Menu color={colors.primary} size={28} />
         </div>
-        <div style={logoStyle}>WorldBuilder</div>
+        <div className="cursor-pointer" onClick={() => navigate('/')} style={logoStyle}>WorldBuilder</div>
         <CommonButton
           onClick={handleLogout}
           variant="secondary"

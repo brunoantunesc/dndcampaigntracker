@@ -1,13 +1,25 @@
 // src/utils/authFetch.js
 
+export function resetLocalStorage() {
+  // Remove o token e qualquer dado do usuário
+  localStorage.removeItem('token');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('routes');
+
+}
+
 export async function authFetch(url, options = {}) {
   const token = localStorage.getItem('token');
-
+  
   const headers = {
     ...options.headers,
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
+
+  if (options.body) {
+    headers['Content-Type'] = 'application/json';
+  }
 
   const response = await fetch(url, {
     ...options,
@@ -15,9 +27,7 @@ export async function authFetch(url, options = {}) {
   });
   
     if (response.status === 401 || response.status === 403) {
-    // Remove o token e qualquer dado do usuário
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
+    resetLocalStorage()
 
     // Redireciona para a página de login
     window.location.href = '/login';

@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Start Full Stack",
+      "configurations": ["Run Backend", "Run Frontend"]
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Run Backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/server.js",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run Frontend",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -3,6 +3,9 @@ const Calendar = require('../models/Calendar');
 
 exports.createCalendar = async (req, res) => {
   try {
+    if (!req.body.name) {
+      return res.status(400).json({ message: 'O campo name é obrigatório.' });
+    }
     const calendar = new Calendar(req.body);
     await calendar.save();
     res.status(201).json(calendar);

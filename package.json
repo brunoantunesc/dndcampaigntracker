@@ -1,12 +1,12 @@
 {
   "name": "dndcampaigntracker",
   "version": "0.1.0",
+  "proxy": "http://localhost:4000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.1.2",
-    "@tailwindcss/vite": "^4.1.11",
+    "@mui/material": "^7.2.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -28,7 +28,6 @@
     "react-router-dom": "^7.6.2",
     "react-scripts": "5.0.1",
     "sass": "^1.89.2",
-    "tailwindcss": "^4.1.11",
     "web-vitals": "^2.1.4",
     "zod": "^3.25.67"
   },
@@ -58,12 +57,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "autoprefixer": "^10.4.21",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.2.0",
+    "postcss": "^8.5.6",
     "prettier": "^3.6.1",
+    "tailwindcss": "^3.4.17",
     "typescript-eslint": "^8.35.0"
   }
 }

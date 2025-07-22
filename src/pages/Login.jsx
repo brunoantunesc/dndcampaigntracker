@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CommonButton from '../components/Buttons'
+import {CommonButton} from '../components/Buttons.tsx'
+import { fetchRoutes } from '../services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:4000/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -28,6 +29,7 @@ export default function Login() {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('userName', data.name);
+      await fetchRoutes()
       navigate('/');
     } catch (err) {
       setError('Erro ao conectar com o servidor');
