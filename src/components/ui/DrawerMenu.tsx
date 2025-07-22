@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { colors, fonts, spacing, borders } from '../../styles/designSystem';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 
 interface Route {
   path: string;
@@ -14,6 +15,7 @@ interface DrawerMenuProps {
 
 const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpen, onClose }) => {
   const [routes, setRoutes] = useState<Route[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
     const storedRoutes = localStorage.getItem('routes');
@@ -38,11 +40,20 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpen, onClose }) => {
       )}
       <nav style={{ ...drawerStyle, left: isOpen ? 0 : -250 }}>
         <ul style={listStyle}>
-          {routes.map(({ path, label }) => (
+          {routes.map(({ path, label }) => {
+            const isActive = location.pathname === path;
+    
+            return (
             <li key={path}>
-              <Link style={linkStyle} to={path}>{label}</Link>
+              {isActive ? (
+                <span style={{ ...linkStyle, cursor: 'default', opacity: 0.6 }}>
+                  {label}
+                </span>
+              ) : (
+                <Link style={linkStyle} to={path}>{label}</Link>
+              )}
             </li>
-          ))}
+          )})}
         </ul>
       </nav>
     </>
