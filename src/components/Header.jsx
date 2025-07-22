@@ -33,7 +33,7 @@ const Header = () => {
         >
           <Menu color={colors.primary} size={28} />
         </div>
-        <div style={logoStyle}>WorldBuilder</div>
+        <div className="cursor-pointer" onClick={() => navigate('/')} style={logoStyle}>WorldBuilder</div>
         <CommonButton
           onClick={handleLogout}
           variant="secondary"
