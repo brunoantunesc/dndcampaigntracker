@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,10 +15,17 @@ interface AddMonthDialogProps {
 const AddMonthDialog: React.FC<AddMonthDialogProps> = ({ open, onClose, onSave }) => {
   const [name, setName] = useState('');
   const [days, setDays] = useState('');
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+  if (open && nameInputRef.current) {
+    nameInputRef.current.focus();
+  }
+}, [open]);
 
   const handleSave = () => {
     if (!name.trim() || !days || Number(days) <= 0) {
-      alert('Preencha nome e número de dias corretamente');
+      alert('Error in fields');
       return;
     }
     onSave({ name: name.trim(), days: Number(days) });
@@ -47,33 +54,32 @@ const AddMonthDialog: React.FC<AddMonthDialogProps> = ({ open, onClose, onSave }
       }}
     >
       <div style={{ fontFamily: fonts.main, fontSize: '1.2rem', fontWeight: 'bold', margin: spacing.sm }}>
-        Adicionar novo mês
+        Add new month
       </div>
 
       <DialogContent dividers>
         <InputField
-          label="Nome"
+          label="Name"
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          inputRef={nameInputRef}
         />
-        <div style={{paddingTop: spacing.xl}}>
-          <InputField
-            label="Número de dias"
-            type="number"
-            name="days"
-            value={days}
-            onChange={(e) => setDays(e.target.value)}
-          />
-        </div>
+        <InputField
+          label="Number of days"
+          type="number"
+          name="days"
+          value={days}
+          onChange={(e) => setDays(e.target.value)}
+        />
       </DialogContent>
 
       <DialogActions>
-        <CommonButton variant="danger" onClick={handleClose}>
-          Cancelar
-        </CommonButton>
         <CommonButton variant="primary" onClick={handleSave}>
-          Salvar
+          Save
+        </CommonButton>
+        <CommonButton variant="secondary" onClick={handleClose}>
+          Cancel
         </CommonButton>
       </DialogActions>
     </Dialog>

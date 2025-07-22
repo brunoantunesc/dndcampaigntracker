@@ -43,14 +43,14 @@ const CalendarsList: React.FC = () => {
     <FormWrapper title="Meus Calendários" onSubmit={(e) => e.preventDefault()}>
       <div style={{paddingTop: spacing.xl}}>
       {calendars.length === 0 ? (
-        <p className="text-gray-400">Nenhum calendário encontrado.</p>
+        <p className="text-gray-400">No calendar found.</p>
       ) : (
         <ul className="space-y-4">
           {calendars.map((calendar) => (
             <li key={calendar._id} className="p-4 border border-blue-500 rounded-lg">
               <h2 className="text-lg font-bold text-white">{calendar.name}</h2>
               <p className="text-xs text-gray-500 mt-1">
-                Meses: {calendar.months.length}
+                Months: {calendar.months.length}
               </p>
             </li>
           ))}
@@ -60,7 +60,7 @@ const CalendarsList: React.FC = () => {
 
       <div style={{paddingTop: spacing.xl}} className="mt-6">
         <CommonButton variant="primary" onClick={() => window.location.href = '/calendars/create'}>
-          Criar novo calendário
+          Create new calendar
         </CommonButton>
       </div>
     </FormWrapper>

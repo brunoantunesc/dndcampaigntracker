@@ -25,7 +25,7 @@ const Select: React.FC<SelectProps> = ({
   placeholder = 'Select an option',
 }) => {
   return (
-    <div style={{ maxWidth: '50%', paddingTop: spacing.md }} className="mb-4">
+    <div style={{ paddingTop: spacing.md }} className="mb-4">
       <label htmlFor={name} className="block text-cyan-400 font-bold mb-1">
         {label}
       </label>

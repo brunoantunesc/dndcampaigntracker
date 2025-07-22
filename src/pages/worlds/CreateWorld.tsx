@@ -118,8 +118,11 @@ const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
             placeholder="Selecione um calendário"
           />
 
-          <div style={{ paddingTop: spacing.lg }}>
-            <CommonButton type="submit">Create World</CommonButton>
+          <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
+            <CommonButton type="submit">Save</CommonButton>
+            <div>
+            <CommonButton variant="secondary" onClick={() => navigate('/worlds/')}>Cancel</CommonButton>
+            </div>
           </div>
         </FormWrapper>
       </div>

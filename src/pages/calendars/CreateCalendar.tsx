@@ -124,20 +124,21 @@ const CreateCalendar: React.FC = () => {
             <div style={{paddingTop: spacing.xs}}>
               <CommonButton
                 type="button"
-                className="px-3 py-1 rounded-full bg-gray-700 text-gray-400 border border-gray-600 cursor-not-allowed"
+                className="px-3 py-1 rounded-full bg-gray-700 text-gray-400 border border-gray-600"
                 onClick={() => setShowAddMonthDialog(true)}
               >
-                + Novo mês
+                + New month
               </CommonButton>
             </div>
           </div>
         </div>
 
-        <div style={{paddingTop: spacing.xl}} className="mt-6">
-          <CommonButton type="submit" variant="primary">
-            Criar calendário
-          </CommonButton>
-        </div>
+          <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
+            <CommonButton type="submit">Save</CommonButton>
+            <div>
+            <CommonButton variant="secondary" onClick={() => navigate('/calendars/')}>Cancel</CommonButton>
+            </div>
+          </div>
 
         <AddMonthDialog
           open={showAddMonthDialog}
