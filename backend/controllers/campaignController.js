@@ -12,10 +12,22 @@ exports.createCampaign = async (req, res) => {
 
 exports.getCampaigns = async (req, res) => {
   try {
-    const campaigns = await Campaign.find().populate('characters');
+    const campaigns = await Campaign.find().populate('world')//.populate('arcs').populate('characters')
     res.json(campaigns);
   } catch (err) {
     res.status(500).json({ message: 'Erro ao buscar campanhas', error: err.message });
+  }
+};
+
+exports.getCampaignById = async (req, res) => {
+  try {
+    const campaign = await Campaign.findById(req.params.id).populate('world')//.populate('arcs').populate('characters')
+    if (!campaign) {
+      return res.status(404).json({ message: 'Campanha não encontrada' });
+    }
+    res.json(campaign);
+  } catch (err) {
+    res.status(400).json({ message: 'Erro ao buscar campanha', error: err.message });
   }
 };
 

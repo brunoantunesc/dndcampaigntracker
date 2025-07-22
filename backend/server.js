@@ -53,9 +53,9 @@ const sessionRoutes = require('./routes/sessionRoutes');
 const campaignRoutes = require('./routes/campaignRoutes');
 const characterRoutes = require('./routes/characterRoutes');
 
-app.use('/campaigns', campaignRoutes);
-app.use('/characters', characterRoutes);
-app.use('/sessions', sessionRoutes);
+app.use('/api/campaigns', campaignRoutes);
+app.use('/api/characters', characterRoutes);
+app.use('/api/sessions', sessionRoutes);
 app.use('/api/worlds', worldRoutes);
 app.use('/api/calendars', calendarRoutes);
 app.use('/api/months', monthRoutes);
@@ -66,6 +66,7 @@ app.get('/routes', authenticateToken, (req, res) => {
     { path: '/worlds', label: 'Worlds', component: 'WorldList' },
     { path: '/calendars', label: 'Calendars', component: 'CalendarList' },
     { path: '/campaigns', label: 'Campaigns', component: 'CampaignList' },
+    { path: '/arcs', label: 'Arcs', component: 'ArcList' },
     { path: '/sessions', label: 'Sessions', component: 'SessionList' },
     { path: '/characters', label: 'Characters', component: 'CharacterList' },
   ]);

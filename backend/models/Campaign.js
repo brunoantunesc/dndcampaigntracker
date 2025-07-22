@@ -10,11 +10,13 @@ const campaignSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  arc: {
+  endDate: {
+    type: String,
+  },
+  arcs: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Arc',
-    required: false,
-  },
+  }],
   characters: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Character',
@@ -22,11 +24,6 @@ const campaignSchema = new mongoose.Schema({
   world: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'World',
-    required: true,
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
 });

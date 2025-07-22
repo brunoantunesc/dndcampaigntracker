@@ -6,28 +6,10 @@ const arcSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  startDate: {
-    type: String,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  characters: [{
+  sessions: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Character',
+    ref: 'Session',
   }],
-  world: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'World',
-    required: true,
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
 });
 
 module.exports = mongoose.model('Campaign', campaignSchema);
