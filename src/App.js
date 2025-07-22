@@ -9,6 +9,10 @@ import CreateCampaign from './pages/campaigns/CreateCampaign';
 import EditCampaign from './pages/campaigns/EditCampaign';
 import { useAuth } from './contexts/AuthContext';
 import { RoutesProvider, useRoutes } from './contexts/RoutesContext';
+import CreateSession from './pages/sessions/CreateSession';
+import EditSession from './pages/sessions/EditSession';
+import CreateArc from './pages/arcs/CreateArc';
+import EditArc from './pages/arcs/EditArc';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -89,7 +93,45 @@ function App() {
               </React.Suspense>
             }
           />
+
+          <Route
+            path="/sessions/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CreateSession />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path="/sessions/edit/:id"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <EditSession />
+              </React.Suspense>
+            }
+          />
+          
+
+          <Route
+            path="/arcs/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CreateArc />
+              </React.Suspense>
+            }
+          />
+          
+          <Route
+            path="/arcs/edit/:id"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <EditArc />
+              </React.Suspense>
+            }
+          />
         </Route>
+
       </Routes>
   );
 }

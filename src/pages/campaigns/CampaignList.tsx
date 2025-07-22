@@ -60,19 +60,19 @@ const CampaignsList: React.FC = () => {
                   >
                     <h2 className="text-lg font-bold text-white">{campaign.name}</h2>
                     <p className="text-xs text-gray-500 mt-1">
-                      Mundo: <span className="text-white">{campaign.world?.name}</span>
+                      World: <span className="text-white">{campaign.world?.name}</span>
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Início: {new Date(campaign.startDate).toLocaleDateString()}
+                      Start: {new Date(campaign.startDate).toLocaleDateString()}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Fim: {campaign.endDate ? new Date(campaign.endDate).toLocaleDateString() : '-'}
+                      End: {campaign.endDate ? new Date(campaign.endDate).toLocaleDateString() : '-'}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Arcos: {campaign.arcs?.length ?? 0}
+                      Arcs: {campaign.arcs?.length ?? 0}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Sessões: { /* TODO: Mapear todos os arcos para obter o número de sessões */ campaign.arcs?.reduce((total, arc) => total + arc.sessions?.length, 0) }
+                      Sessions: { campaign.arcs?.reduce((total, arc) => total + arc.sessions?.length, 0) }
                     </p>
                   </CardItem>
                 ))}
@@ -82,7 +82,7 @@ const CampaignsList: React.FC = () => {
 
           <div style={{ paddingTop: spacing.xl }} className="mt-6">
             <CommonButton variant="primary" onClick={() => navigate('/campaigns/create')}>
-              Criar nova campanha
+              New campaign
             </CommonButton>
           </div>
         </FormWrapper>

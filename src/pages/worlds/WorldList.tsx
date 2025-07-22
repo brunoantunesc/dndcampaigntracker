@@ -61,7 +61,7 @@ const WorldList: React.FC = () => {
               <CardItem key={world._id}>
                 <h2 className="text-lg font-bold text-white">{world.name}</h2>
                 <p className="text-xs text-gray-500 mt-1">
-                  Descrição: {world.description}
+                  Description: {world.description}
                 </p>
               </CardItem>
             ))}
