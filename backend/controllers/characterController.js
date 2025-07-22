@@ -18,6 +18,17 @@ exports.getCharacters = async (req, res) => {
     res.status(500).json({ message: 'Erro ao buscar personagens', error: err.message });
   }
 };
+exports.getCharacterById = async (req, res) => {
+  try {
+    const character = await Character.findById(req.params.id)
+    if (!character) {
+      return res.status(404).json({ message: 'Character not found' });
+    }
+    res.json(character);
+  } catch (err) {
+    res.status(400).json({ message: 'Error fetching character', error: err.message });
+  }
+};
 
 exports.updateCharacter = async (req, res) => {
   try {

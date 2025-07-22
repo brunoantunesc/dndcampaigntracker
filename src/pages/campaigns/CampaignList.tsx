@@ -69,6 +69,9 @@ const CampaignsList: React.FC = () => {
                       End: {campaign.endDate ? new Date(campaign.endDate).toLocaleDateString() : '-'}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
+                      Characters: {campaign.characters?.length ?? 0}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
                       Arcs: {campaign.arcs?.length ?? 0}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">

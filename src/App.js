@@ -13,6 +13,8 @@ import CreateSession from './pages/sessions/CreateSession';
 import EditSession from './pages/sessions/EditSession';
 import CreateArc from './pages/arcs/CreateArc';
 import EditArc from './pages/arcs/EditArc';
+import CharacterCreate from './pages/characters/CreateCharacter';
+import EditCharacter from './pages/characters/EditCharacter';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -112,7 +114,6 @@ function App() {
             }
           />
           
-
           <Route
             path="/arcs/create"
             element={
@@ -127,6 +128,26 @@ function App() {
             element={
               <React.Suspense fallback={<div>Loading...</div>}>
                 <EditArc />
+              </React.Suspense>
+            }
+          />
+          
+        
+          <Route
+            path="/characters/create"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CharacterCreate />
+              </React.Suspense>
+            }
+          />
+          
+        
+          <Route
+            path="/characters/edit/:id"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <EditCharacter />
               </React.Suspense>
             }
           />
