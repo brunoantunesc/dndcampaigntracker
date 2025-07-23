@@ -66,12 +66,12 @@ app.use('/api/arcs', arcRoutes)
 // Rota de rotas (menu)
 app.get('/routes', authenticateToken, (req, res) => {
   res.json([
-    { path: '/worlds', label: 'Worlds', component: 'WorldList' },
-    { path: '/campaigns', label: 'Campaigns', component: 'CampaignList' },
-    { path: '/arcs', label: 'Arcs', component: 'ArcList' },
-    { path: '/sessions', label: 'Sessions', component: 'SessionList' },
-    { path: '/characters', label: 'Characters', component: 'CharacterList' },
-    { path: '/calendars', label: 'Calendars', component: 'CalendarList' },
+    { path: '/worlds', label: 'Worlds', type: 'database', component: 'WorldList' },
+    { path: '/campaigns', label: 'Campaigns', type: 'database', component: 'CampaignList' },
+    { path: '/arcs', label: 'Arcs', type: 'database', component: 'ArcList' },
+    { path: '/sessions', label: 'Sessions', type: 'database', component: 'SessionList' },
+    { path: '/characters', label: 'Characters', type: 'database', component: 'CharacterList' },
+    { path: '/calendars', label: 'Calendars', type: 'database', component: 'CalendarList' },
   ]);
 });
 
