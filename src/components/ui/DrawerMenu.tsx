@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { colors, fonts, spacing, borders } from '../../styles/designSystem';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useRoutes } from '../../contexts/RoutesContext';
-
-interface Route {
-  path: string;
-  label: string;
-}
 
 interface DrawerMenuProps {
   isOpen: boolean;
@@ -17,81 +11,55 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpen, onClose }) => {
   const { routes } = useRoutes();
   const location = useLocation();
 
-  // não precisa mais do useEffect que lê localStorage
+  const commonRoutes = routes.filter((r) => r.type !== 'database');
+  const databaseRoutes = routes.filter((r) => r.type === 'database');
+
+  const renderLink = (path: string, label: string) => {
+    const isActive = location.pathname === path;
+
+    return isActive ? (
+      <span className="block px-4 py-2 text-cyan-400 cursor-default">
+        {label}
+      </span>
+    ) : (
+      <Link className="block px-4 py-2 text-primary hover:opacity-80" to={path}>
+        {label}
+      </Link>
+    );
+  };
 
   return (
     <>
-      {isOpen && <div onClick={onClose} style={backdropStyle} />}
-      <nav style={{ ...drawerStyle, left: isOpen ? 0 : -250 }}>
-        <ul style={listStyle}>
-          {routes.map(({ path, label }) => {
-            const isActive = location.pathname === path;
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[1000]"
+          onClick={onClose}
+        />
+      )}
+      <nav
+        className={`fixed top-0 bottom-0 w-[250px] bg-black border-r-4 border-primary pt-8 transition-left duration-300 z-[1001] font-main ${
+          isOpen ? 'left-0' : '-left-[250px]'
+        }`}
+      >
+        <ul className="list-none p-0 m-0">
+          {commonRoutes.map(({ path, label }) => (
+            <li key={path}>{renderLink(path, label)}</li>
+          ))}
 
-            return (
-              <li key={path}>
-                {isActive ? (
-                  <span style={{ ...linkStyle, cursor: 'default', opacity: 0.6 }}>
-                    {label}
-                  </span>
-                ) : (
-                  <Link style={linkStyle} to={path}>
-                    {label}
-                  </Link>
-                )}
+          {databaseRoutes.length > 0 && (
+            <>
+              <li className="px-4 py-2 text-xs text-secondary uppercase font-bold opacity-60 mt-4">
+                Database
               </li>
-            );
-          })}
+              {databaseRoutes.map(({ path, label }) => (
+                <li key={path}>{renderLink(path, label)}</li>
+              ))}
+            </>
+          )}
         </ul>
       </nav>
     </>
   );
-};
-
-const drawerStyle: React.CSSProperties = {
-  position: 'fixed',
-  top: 0,
-  bottom: 0,
-  width: 250,
-  backgroundColor: colors.background,
-  borderRight: borders.thick,
-  paddingTop: spacing.xl,
-  boxSizing: 'border-box',
-  transition: 'left 0.3s ease',
-  zIndex: 1001,
-  fontFamily: fonts.main,
-};
-
-const backdropStyle: React.CSSProperties = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0,0,0,0.5)',
-  zIndex: 1000,
-};
-
-const logoStyle: React.CSSProperties = {
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  fontSize: '1.5rem',
-  fontFamily: fonts.main,
-  color: colors.primary,
-};
-
-const listStyle: React.CSSProperties = {
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
-};
-
-const linkStyle: React.CSSProperties = {
-  display: 'block',
-  padding: `${spacing.sm} ${spacing.md}`,
-  color: colors.primary,
-  textDecoration: 'none',
-  fontFamily: fonts.main,
 };
 
 export default DrawerMenu;
