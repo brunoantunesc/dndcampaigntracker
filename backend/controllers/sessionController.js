@@ -12,7 +12,15 @@ exports.createSession = async (req, res) => {
 
 exports.getSessions = async (req, res) => {
   try {
-    const sessions = await Session.find().populate('campaign');
+    const sessions = await Session.find().populate({
+        path: 'campaign',
+        populate: {
+          path: 'world',
+          populate: {
+            path: 'calendar',
+          },
+        },
+      });
     res.json(sessions);
   } catch (err) {
     res.status(500).json({ message: 'Erro ao buscar sessões', error: err.message });

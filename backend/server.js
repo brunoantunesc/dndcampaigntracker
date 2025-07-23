@@ -66,6 +66,7 @@ app.use('/api/arcs', arcRoutes)
 // Rota de rotas (menu)
 app.get('/routes', authenticateToken, (req, res) => {
   res.json([
+    { path: '/timelines', label: 'Timelines', type: 'interactive', component: 'TimelineList' },
     { path: '/worlds', label: 'Worlds', type: 'database', component: 'WorldList' },
     { path: '/campaigns', label: 'Campaigns', type: 'database', component: 'CampaignList' },
     { path: '/arcs', label: 'Arcs', type: 'database', component: 'ArcList' },

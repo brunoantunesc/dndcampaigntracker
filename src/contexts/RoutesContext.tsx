@@ -5,7 +5,7 @@ interface Route {
   path: string;
   label: string;
   component: string;
-  type: 'database'
+  type: 'database' | 'interactive'
 }
 
 interface RoutesContextType {
