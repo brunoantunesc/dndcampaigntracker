@@ -55,11 +55,13 @@ const CharactersList: React.FC = () => {
                   >
                     <h2 className="text-lg font-bold text-white">{char.name}</h2>
                     <p className="text-xs text-gray-500 mt-1">
+                      From {char.world.name}
+                      <br />
                       {`Level ${char.level}`} {char.race}
                       <br />
                       {char.subclass ? char.subclass : ''} {char.characterClass}
                       <br />
-                      Born in {char.birthDate}
+                      Born in {char.birthDate} 
                     </p>
                   </CardItem>
                 ))}

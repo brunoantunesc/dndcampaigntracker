@@ -6,6 +6,7 @@ import { CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
 import { authFetch } from '../../utils/authFetch';
+import FictionalDateSelect from '../../components/form/FictionalDateSelect';
 
 interface Session {
   _id: string;
@@ -24,6 +25,7 @@ const EditSession: React.FC = () => {
   const navigate = useNavigate();
 
   const [session, setSession] = useState<Session | null>(null);
+  const [calendarId, setCalendarId] = useState<string | null>(null);
   const [form, setForm] = useState({
     summary: '',
     inGameDate: '',
@@ -40,6 +42,7 @@ const EditSession: React.FC = () => {
             summary: data.summary || '',
             inGameDate: data.inGameDate || '',
           });
+          setCalendarId(data.campaign.world.calendar)
         } else {
           console.error('Failed to fetch session');
         }
@@ -117,13 +120,18 @@ const EditSession: React.FC = () => {
             type="textarea"
           />
 
-          <InputField
+          <FictionalDateSelect
             label="In-Game Date"
             name="inGameDate"
             value={form.inGameDate}
-            onChange={handleChange}
-            placeholder="YYYY-MM-DD"
+            onChange={(val) => setForm(prev => ({ ...prev, inGameDate: val }))}
+            calendarId={calendarId ?? ''}
+            disabled={!calendarId}
           />
+
+          <div className='text-xs mt-2'>
+            {form.inGameDate}
+          </div>
 
           <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
             <CommonButton type="submit">Save</CommonButton>

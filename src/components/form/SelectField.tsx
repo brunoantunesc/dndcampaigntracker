@@ -26,7 +26,7 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <div style={{ paddingTop: spacing.md }} className="mb-4">
-      <label htmlFor={name} className="block text-cyan-400 font-bold mb-1">
+      <label htmlFor={name} className="block text-sm font-medium mb-1">
         {label}
       </label>
       <select

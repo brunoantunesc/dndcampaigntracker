@@ -10,6 +10,11 @@ const characterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  world: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'World',
+    required: true,
+  },
   characterClass: {
     type: String,
     required: true,
