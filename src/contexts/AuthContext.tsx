@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { fetchRoutes } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
   token: string;
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
   const [routes, setRoutes] = useState<any[]>([]);
   const [loadingRoutes, setLoadingRoutes] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function loadRoutes() {
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken('');
     setUserName('');
     setRoutes([]);
+    navigate('/login')
   };
 
   return (
