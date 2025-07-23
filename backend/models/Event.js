@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema({
   },
   summary: {
     type: String,
-  }
+  },
   inGameDate: {
     type: String,
     required: true,
