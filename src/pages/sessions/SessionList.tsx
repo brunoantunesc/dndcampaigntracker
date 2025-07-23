@@ -58,7 +58,7 @@ const SessionList: React.FC = () => {
                     <p className="text-xs text-gray-500 mt-1">
                       Campaign: <span className="text-white">{session.campaign?.name || '-'}</span>
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">
                       Summary: {session.summary?.trim() ? session.summary : '-'}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
