@@ -16,6 +16,7 @@ import EditArc from './pages/arcs/EditArc';
 import CharacterCreate from './pages/characters/CreateCharacter';
 import EditCharacter from './pages/characters/EditCharacter';
 import EditCalendar from './pages/calendars/EditCalendar';
+import WorldTimeline from './pages/timeline/WorldTimeline';
 
 const componentMap = {
   WorldList: React.lazy(() => import('./pages/worlds/WorldList')),
@@ -24,6 +25,7 @@ const componentMap = {
   SessionList: React.lazy(() => import('./pages/sessions/SessionList')),
   ArcList: React.lazy(() => import('./pages/arcs/ArcList')),
   CalendarList: React.lazy(() => import('./pages/calendars/CalendarList')),
+  TimelineList: React.lazy(() => import('./pages/timeline/TimelineList'))
 };
 
 // Rota protegida que verifica o token no contexto Auth
@@ -158,6 +160,15 @@ function App() {
             element={
               <React.Suspense fallback={<div>Loading...</div>}>
                 <EditCalendar />
+              </React.Suspense>
+            }
+          />
+          
+          <Route
+            path="/timeline/world/:id/"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <WorldTimeline />
               </React.Suspense>
             }
           />
