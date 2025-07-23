@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { colors, fonts, spacing } from '../../styles/designSystem';
 
 type ButtonType = 'button' | 'submit' | 'reset';
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'mini' | 'miniDanger' | 'action';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'mini' | 'miniDanger' | 'action' | 'actionDanger';
 
 interface CommonButtonProps {
   children: ReactNode;
@@ -25,11 +25,12 @@ interface ToggleButtonProps {
 
 const hoverStylesMap: Record<ButtonVariant, { backgroundColor: string; color: string }> = {
   primary: { backgroundColor: colors.primaryDark, color: colors.background },
-  secondary: { backgroundColor: '#555555', color: colors.foreground }, // tom mais escuro do border
+  secondary: { backgroundColor: '#555555', color: colors.foreground },
   danger: { backgroundColor: '#cc4444', color: colors.background },
   mini: { backgroundColor: '#555555', color: colors.foreground },
   miniDanger: { backgroundColor: '#cc4444', color: colors.background },
   action: { backgroundColor: colors.primaryDark, color: colors.background },
+  actionDanger: { backgroundColor: colors.primaryDark, color: '#cc4444' },
 };
 
 const baseStylesMap: Record<ButtonVariant, React.CSSProperties> = {
@@ -78,6 +79,15 @@ const baseStylesMap: Record<ButtonVariant, React.CSSProperties> = {
   action: {
     backgroundColor: 'transparent',
     color: colors.primary,
+    padding: spacing.xs + ' ' + spacing.sm,
+    fontSize: '0.75rem',
+    fontFamily: fonts.main,
+    fontWeight: 600,
+    border: 'none',
+  },
+  actionDanger: {
+    backgroundColor: 'transparent',
+    color: colors.background,
     padding: spacing.xs + ' ' + spacing.sm,
     fontSize: '0.75rem',
     fontFamily: fonts.main,

@@ -44,7 +44,7 @@ export async function getMonthsForCalendar(calendarId: string): Promise<Month[]>
   
   const calendar: Calendar = await res.json();
   
-  const monthsSorted = calendar.months.sort((a, b) => a.order - b.order);
+  const monthsSorted = [...calendar.months].sort((a, b) => a.order - b.order);
   
   calendarCache[calendarId] = monthsSorted;
   
@@ -94,6 +94,8 @@ export async function compareFictionalDates(
     monthOrderMap[m.name.toLowerCase()] = m.order;
   });
 
+  console.log('teste')
+
   const orderA = monthOrderMap[parsedA.month.toLowerCase()];
   const orderB = monthOrderMap[parsedB.month.toLowerCase()];
 
@@ -109,4 +111,24 @@ export async function compareFictionalDates(
   }
 
   return parsedA.day - parsedB.day;
+}
+
+export async function getOrderForDate(dateStr: string, calendarId: string): Promise<number> {
+  if (!dateStr || ['sem data', 'no date', ''].includes(dateStr.toLowerCase())) {
+    return Number.MAX_SAFE_INTEGER; // Data inválida vai para o fim
+  }
+
+  const parsed = parseDate(dateStr);
+  const months = await getMonthsForCalendar(calendarId);
+  const monthOrderMap: Record<string, number> = {};
+  months.forEach(m => {
+    monthOrderMap[m.name.trim().toLowerCase()] = m.order;
+  });
+
+  const monthIndex = monthOrderMap[parsed.month.trim().toLowerCase()];
+  if (monthIndex === undefined) {
+    throw new Error(`Month ${parsed.month} not found in calendar`);
+  }
+
+  return parsed.year * 10000 + monthIndex * 100 + parsed.day;
 }
