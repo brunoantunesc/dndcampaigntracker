@@ -53,6 +53,7 @@ const sessionRoutes = require('./routes/sessionRoutes');
 const campaignRoutes = require('./routes/campaignRoutes');
 const characterRoutes = require('./routes/characterRoutes');
 const arcRoutes = require('./routes/arcRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 
 
 app.use('/api/campaigns', campaignRoutes);
@@ -61,7 +62,8 @@ app.use('/api/sessions', sessionRoutes);
 app.use('/api/worlds', worldRoutes);
 app.use('/api/calendars', calendarRoutes);
 app.use('/api/months', monthRoutes);
-app.use('/api/arcs', arcRoutes)
+app.use('/api/arcs', arcRoutes);
+app.use('/api/events', eventRoutes);
 
 // Rota de rotas (menu)
 app.get('/routes', authenticateToken, (req, res) => {

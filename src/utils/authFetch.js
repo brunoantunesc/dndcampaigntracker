@@ -5,6 +5,7 @@ export function resetLocalStorage() {
   localStorage.removeItem('token');
   localStorage.removeItem('userName');
   localStorage.removeItem('routes');
+  window.location.href('/login')
 
 }
 
@@ -29,10 +30,6 @@ export async function authFetch(url, options = {}) {
     if (response.status === 401 || response.status === 403) {
     resetLocalStorage()
 
-    // Redireciona para a página de login
-    window.location.href = '/login';
-
-    // Para o fluxo (opcional)
     return Promise.reject(new Error('Sessão expirada, faça login novamente.'));
   }
 
