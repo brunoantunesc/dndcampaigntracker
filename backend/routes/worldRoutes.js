@@ -6,6 +6,7 @@ const authenticateToken = require('../middleware/auth');
 
 router.post('/', authenticateToken, worldController.createWorld);
 router.get('/', authenticateToken, worldController.getWorlds);
+router.get('/:id', authenticateToken, worldController.getWorldById);
 router.put('/:id', authenticateToken, worldController.updateWorld);
 router.delete('/:id', authenticateToken, worldController.deleteWorld);
 

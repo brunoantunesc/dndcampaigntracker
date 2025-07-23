@@ -12,7 +12,7 @@ exports.createCharacter = async (req, res) => {
 
 exports.getCharacters = async (req, res) => {
   try {
-    const characters = await Character.find();
+    const characters = await Character.find().populate('world');
     res.json(characters);
   } catch (err) {
     res.status(500).json({ message: 'Erro ao buscar personagens', error: err.message });
@@ -20,7 +20,7 @@ exports.getCharacters = async (req, res) => {
 };
 exports.getCharacterById = async (req, res) => {
   try {
-    const character = await Character.findById(req.params.id)
+    const character = await Character.findById(req.params.id).populate('world');
     if (!character) {
       return res.status(404).json({ message: 'Character not found' });
     }

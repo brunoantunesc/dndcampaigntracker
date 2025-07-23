@@ -20,6 +20,15 @@ exports.getWorlds = async (req, res) => {
   }
 };
 
+exports.getWorldById = async (req, res) => {
+  try {
+    const world = await World.findById(req.params.id).populate('calendar');
+    res.json(world);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar mundos', error });
+  }
+};
+
 exports.updateWorld = async (req, res) => {
   try {
     const updated = await World.findOneAndUpdate(

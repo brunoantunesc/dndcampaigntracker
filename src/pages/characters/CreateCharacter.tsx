@@ -1,20 +1,23 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import InputField from '../../components/form/InputField';
+import SelectField from '../../components/form/SelectField';
+import FictionalDateSelect from '../../components/form/FictionalDateSelect';
 import { CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
 import { authFetch } from '../../utils/authFetch';
-import { Character } from '../../interfaces/Character';
+import { World } from '../../interfaces/World';
 
 interface CharacterFormData {
   name: string;
   race: string;
   characterClass: string;
   subclass?: string;
-  level: string
+  level: string;
   birthDate: string;
+  world: string;
 }
 
 const CharacterCreate: React.FC = () => {
@@ -25,11 +28,67 @@ const CharacterCreate: React.FC = () => {
     subclass: '',
     level: '',
     birthDate: '',
+    world: '',
   });
 
+  const [worlds, setWorlds] = useState<World[]>([]);
+  const [calendarId, setCalendarId] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchWorlds = async () => {
+      try {
+        const response = await authFetch('/api/worlds');
+        if (response.ok) {
+          const data = await response.json();
+          setWorlds(data);
+        } else {
+          console.error('Erro ao buscar mundos');
+        }
+      } catch (err) {
+        console.error('Erro ao buscar mundos', err);
+      }
+    };
+
+    fetchWorlds();
+  }, []);
+
+  // Quando o mundo mudar, pegar calendar._id dele
+  useEffect(() => {
+    if (!form.world) {
+      setCalendarId(null);
+      return;
+    }
+
+    const fetchCalendarId = async () => {
+      try {
+        const response = await authFetch(`/api/worlds/${form.world}`);
+        if (response.ok) {
+          const data = await response.json();
+          // Supondo que o objeto world tenha calendar com _id
+          setCalendarId(data.calendar?._id ?? null);
+        } else {
+          console.error('Erro ao buscar world by id');
+          setCalendarId(null);
+        }
+      } catch (err) {
+        console.error('Erro ao buscar world by id', err);
+        setCalendarId(null);
+      }
+    };
+
+    fetchCalendarId();
+  }, [form.world]);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
       ...prevForm,
@@ -40,9 +99,8 @@ const CharacterCreate: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // Validação básica (exemplo)
-    if (!form.name || !form.race || !form.characterClass || !form.birthDate) {
-      alert('Please fill in all required fields.');
+    if (!form.name || !form.race || !form.characterClass || !form.birthDate || !form.world) {
+      alert('Please fill in all required fields, including world.');
       return;
     }
 
@@ -84,6 +142,15 @@ const CharacterCreate: React.FC = () => {
             onChange={handleInputChange}
             placeholder="Race"
           />
+          
+          <InputField
+            label="Level"
+            name="level"
+            value={form.level}
+            onChange={handleInputChange}
+            type="number"
+            placeholder="Level"
+          />
 
           <InputField
             label="Class"
@@ -101,22 +168,34 @@ const CharacterCreate: React.FC = () => {
             placeholder="Subclass"
           />
 
-          <InputField
-            label="Level"
-            name="level"
-            value={form.level}
-            onChange={handleInputChange}
-            type="number"
-            placeholder="Level"
+          <SelectField
+            label="World"
+            name="world"
+            value={form.world}
+            onChange={handleSelectChange}
+            options={worlds.map((world) => ({
+              value: world._id,
+              label: world.name,
+            }))}
+            placeholder="Select a world"
           />
 
-          <InputField
+          <FictionalDateSelect
             label="Birth Date"
             name="birthDate"
             value={form.birthDate}
-            onChange={handleInputChange}
-            placeholder="E.g 1st of Dawn of the 200th year"
+            onChange={(val) =>
+              setForm((prev) => ({
+                ...prev,
+                birthDate: val,
+              }))
+            }
+            calendarId={calendarId ?? ''}
+            disabled={!calendarId}
           />
+          <div className='text-xs mt-2'>
+          {form.birthDate}
+          </div>
 
           <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
             <CommonButton type="submit">Save</CommonButton>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import InputField from '../../components/form/InputField';
 import SelectField from '../../components/form/SelectField';
+import FictionalDateSelect from '../../components/form/FictionalDateSelect';
 import { CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
@@ -19,6 +20,11 @@ interface SessionFormData {
 interface Campaign {
   _id: string;
   name: string;
+  world: {
+    _id: string;
+    name: string;
+    calendar: string;
+  };
 }
 
 const CreateSession: React.FC = () => {
@@ -31,6 +37,7 @@ const CreateSession: React.FC = () => {
   });
 
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [calendarId, setCalendarId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +57,18 @@ const CreateSession: React.FC = () => {
 
     fetchCampaigns();
   }, []);
+
+  // Buscar o calendarId com base na campaign selecionada
+  useEffect(() => {
+    if (!form.campaign) {
+      setCalendarId(null);
+      return;
+    }
+
+    const selectedCampaign = campaigns.find(c => c._id === form.campaign);
+    const calendar = selectedCampaign?.world?.calendar ?? null;
+    setCalendarId(calendar);
+  }, [form.campaign, campaigns]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -113,14 +132,6 @@ const CreateSession: React.FC = () => {
             type="date"
           />
 
-          <InputField
-            label="In-Game Date"
-            name="inGameDate"
-            value={form.inGameDate}
-            onChange={handleInputChange}
-            placeholder="In-game date"
-          />
-
           <SelectField
             label="Campaign"
             name="campaign"
@@ -129,6 +140,19 @@ const CreateSession: React.FC = () => {
             options={campaigns.map(c => ({ value: c._id, label: c.name }))}
             placeholder="Select a campaign"
           />
+
+          <FictionalDateSelect
+            label="In-Game Date"
+            name="inGameDate"
+            value={form.inGameDate}
+            onChange={(val) => setForm(prev => ({ ...prev, inGameDate: val }))}
+            calendarId={calendarId ?? ''}
+            disabled={!calendarId}
+          />
+
+          <div className='text-xs mt-2'>
+            {form.inGameDate}
+          </div>
 
           <div className="flex flex-row gap-8" style={{ paddingTop: spacing.lg }}>
             <CommonButton type="submit">Save</CommonButton>

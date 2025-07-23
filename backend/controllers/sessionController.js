@@ -22,8 +22,13 @@ exports.getSessions = async (req, res) => {
 exports.getSessionById = async (req, res) => {
   try {
     const session = await Session.findById(req.params.id)
-      .populate('campaign')  // popula o objeto Campaign relacionado
-      .populate('owner');    // popula o objeto User relacionado
+      .populate({
+        path: 'campaign',
+        populate: {
+          path: 'world',
+        },
+      })
+      .populate('owner');
 
     if (!session) {
       return res.status(404).json({ message: 'Sessão não encontrada' });

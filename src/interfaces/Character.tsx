@@ -1,3 +1,5 @@
+import { World } from "./World"
+
 export interface Character {
     name: string
     race: string
@@ -5,5 +7,6 @@ export interface Character {
     subclass?: string
     birthDate: string
     level: number
+    world: World
     _id: string
 }

@@ -42,10 +42,10 @@ const SessionList: React.FC = () => {
       <Header />
 
       <div className="p-6 max-w-screen-lg mx-auto text-center">
-        <FormWrapper title="Minhas Sessões" onSubmit={e => e.preventDefault()}>
+        <FormWrapper title="My Sessions" onSubmit={e => e.preventDefault()}>
           <div style={{ paddingTop: spacing.xl }}>
             {sessions.length === 0 ? (
-              <p className="text-gray-400">Nenhuma sessão encontrada</p>
+              <p className="text-gray-400">Sessions not found</p>
             ) : (
               <ul className="space-y-4">
                 {sessions.map(session => (

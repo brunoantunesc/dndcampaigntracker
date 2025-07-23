@@ -6,16 +6,7 @@ import InputField from '../../components/form/InputField';
 import { CommonButton } from '../../components/ui/Buttons';
 import FormWrapper from '../../components/form/FormWrapper';
 import { spacing } from '../../styles/designSystem';
-
-interface Character {
-  _id: string;
-  name: string;
-  race: string;
-  characterClass: string;
-  subclass?: string;
-  level: string;
-  birthDate: string;
-}
+import { Character } from '../../interfaces/Character';
 
 const EditCharacter: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -112,6 +103,13 @@ const EditCharacter: React.FC = () => {
             onChange={() => {}}
           />
           <InputField
+            label="World"
+            name="world"
+            value={form.world.name}
+            readOnly
+            onChange={() => {}}
+          />
+          <InputField
             label="Birth Date"
             name="birthDate"
             value={form.birthDate}
@@ -145,7 +143,7 @@ const EditCharacter: React.FC = () => {
             label="Level"
             name="level"
             type="number"
-            value={form.level}
+            value={String(form.level)}
             onChange={handleChange}
           />
 
